@@ -52,7 +52,7 @@ function SignInPage({ csrfToken }: SignInProps) {
             <div className="grid grid-cols-1 gap-1">
               <button
                 onClick={() => signIn('github')}
-                className="transition duration-200 flex justify-center items-center w-full p-4 my-2 text-black transition bg-white border-black rounded shadow ripple waves-light hover:shadow-lg hover:bg-gray-300 focus:outline-none"
+                className="transition duration-200 flex justify-center items-center w-full p-4 my-2 text-black bg-white border-black rounded shadow ripple waves-light hover:shadow-lg hover:bg-gray-300 focus:outline-none"
               >
                 <FontAwesomeIcon size="lg" icon={['fab', 'github']} />
                 &nbsp; Continue with Github
@@ -60,7 +60,7 @@ function SignInPage({ csrfToken }: SignInProps) {
 
               <button
                 onClick={() => signIn('google')}
-                className="transition duration-200 flex justify-center items-center w-full p-4 my-2 text-black transition bg-white border-black rounded shadow ripple waves-light hover:shadow-lg hover:bg-gray-300 focus:outline-none"
+                className="transition duration-200 flex justify-center items-center w-full p-4 my-2 text-black bg-white border-black rounded shadow ripple waves-light hover:shadow-lg hover:bg-gray-300 focus:outline-none"
               >
                 <FontAwesomeIcon size="lg" icon={['fab', 'google']} />
                 &nbsp; Continue with Google
