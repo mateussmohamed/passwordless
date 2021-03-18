@@ -1,0 +1,49 @@
+{
+  "name": "nextjs-passwordless-auth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "next start",
+    "dev": "next dev",
+    "build": "next build",
+    "prisma:studio": "npx prisma studio",
+    "prisma:dev": "npx prisma migrate dev --preview-feature",
+    "prisma:generate": "npx prisma generate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mateussmohamed/nextjs-passwordless-auth.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mateussmohamed/nextjs-passwordless-auth/issues"
+  },
+  "homepage": "https://github.com/mateussmohamed/nextjs-passwordless-auth#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "@prisma/client": "^2.18.0",
+    "@tailwindcss/forms": "^0.2.1",
+    "next": "^10.0.8",
+    "next-auth": "^3.10.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "@prisma/cli": "^2.18.0",
+    "@types/next-auth": "^3.1.25",
+    "@types/node": "^14.14.31",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "autoprefixer": "^10.2.5",
+    "postcss": "^8.2.7",
+    "prisma": "^2.18.0",
+    "tailwindcss": "^2.0.3",
+    "typescript": "^4.2.3"
+  }
+}
