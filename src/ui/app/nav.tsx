@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { signOut } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { SyntheticEvent } from 'react'
+import Link from 'next/link'
 
 type AppLinkProps = {
   children: React.ReactNode
@@ -27,14 +27,12 @@ function AppLink({ children, href }: AppLinkProps) {
   )
 }
 
-function AppNav() {
-  const [isOpenMainMenu, setOpenMainMenu] = useState(false)
-  const [isOpenNotificationsMenu, setOpenNotificationsMenu] = useState(false)
+type AppNav = {
+  handleSignOut: (e: SyntheticEvent<HTMLAnchorElement>) => void
+}
 
-  const handleSignOut = (e: SyntheticEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
-    signOut()
-  }
+function AppNav({ handleSignOut }: AppNav) {
+  const [isOpenMainMenu, setOpenMainMenu] = useState(false)
 
   return (
     <nav className="bg-gray-800">
@@ -88,6 +86,11 @@ function AppNav() {
                   aria-orientation="vertical"
                   aria-labelledby="user-menu"
                 >
+                  <Link href="/app/profile">
+                    <a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                      Profile
+                    </a>
+                  </Link>
                   <a
                     onClick={handleSignOut}
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -165,6 +168,11 @@ function AppNav() {
               !isOpenMainMenu ? 'opacity-0 scale-95' : 'ease-in opacity-100 scale-100'
             } mt-3 px-2 space-y-1`}
           >
+            <Link href="/app/profile">
+              <a className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">
+                Profile
+              </a>
+            </Link>
             <a
               onClick={handleSignOut}
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"

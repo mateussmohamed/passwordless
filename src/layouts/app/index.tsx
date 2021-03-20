@@ -1,4 +1,5 @@
-import { ReactNode } from 'react'
+import { ReactNode, SyntheticEvent } from 'react'
+import { signOut } from 'next-auth/client'
 
 import { AppNav, AppHeader, AppContent } from 'ui/app'
 
@@ -8,9 +9,14 @@ type AppLayoutProps = {
 }
 
 function AppLayout({ children, pageTitle }: AppLayoutProps) {
+  const handleSignOut = (e: SyntheticEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    signOut()
+  }
+
   return (
     <div className="relative bg-white overflow-hidden">
-      <AppNav />
+      <AppNav handleSignOut={handleSignOut} />
 
       <AppHeader pageTitle={pageTitle} />
 
