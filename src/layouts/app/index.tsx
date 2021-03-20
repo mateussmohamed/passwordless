@@ -6,22 +6,22 @@ import { AppNav, AppHeader, AppContent } from 'ui/app'
 type AppLayoutProps = {
   children?: ReactNode
   pageTitle?: string
-}
+} & ProtectedPageProps
 
-function AppLayout({ children, pageTitle }: AppLayoutProps) {
+function AppLayout({ children, pageTitle, session }: AppLayoutProps) {
   const handleSignOut = (e: SyntheticEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     signOut()
   }
 
   return (
-    <div className="relative bg-white overflow-hidden">
-      <AppNav handleSignOut={handleSignOut} />
+    <main className="relative bg-white overflow-hidden">
+      <AppNav handleSignOut={handleSignOut} user={session.user} />
 
       <AppHeader pageTitle={pageTitle} />
 
       <AppContent>{children}</AppContent>
-    </div>
+    </main>
   )
 }
 
