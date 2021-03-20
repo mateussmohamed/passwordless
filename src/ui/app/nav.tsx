@@ -27,11 +27,12 @@ function AppLink({ children, href }: AppLinkProps) {
   )
 }
 
-type AppNav = {
+type AppNavProps = {
   handleSignOut: (e: SyntheticEvent<HTMLAnchorElement>) => void
+  user: UserSessionProps
 }
 
-function AppNav({ handleSignOut }: AppNav) {
+function AppNav({ handleSignOut, user }: AppNavProps) {
   const [isOpenMainMenu, setOpenMainMenu] = useState(false)
 
   return (
@@ -59,6 +60,7 @@ function AppNav({ handleSignOut }: AppNav) {
 
           <div className="hidden md:block">
             <div className="ml-4 flex items-center md:ml-6">
+              <div className="text-base font-normal leading-none text-white">{user.name}</div>
               <div className="ml-3 relative">
                 <div>
                   <button
@@ -70,11 +72,7 @@ function AppNav({ handleSignOut }: AppNav) {
                     aria-haspopup="true"
                   >
                     <span className="sr-only">Open user menu</span>
-                    <img
-                      className="h-8 w-8 rounded-full"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt=""
-                    />
+                    <img className="h-8 w-8 rounded-full" src={user.image} alt="" />
                   </button>
                 </div>
 
@@ -151,22 +149,18 @@ function AppNav({ handleSignOut }: AppNav) {
         <div className="pt-4 pb-3 border-t border-gray-700">
           <div className="flex items-center px-5">
             <div className="flex-shrink-0">
-              <img
-                className="h-10 w-10 rounded-full"
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                alt=""
-              />
+              <img className="h-10 w-10 rounded-full" src={user.image} alt="" />
             </div>
             <div className="ml-3">
-              <div className="text-base font-medium leading-none text-white">Tom Cook</div>
-              <div className="text-sm font-medium leading-none text-gray-400">tom@example.com</div>
+              <div className="text-base font-normal leading-none text-white">{user.name}</div>
+              <div className="text-sm font-normal leading-none text-gray-400">{user.email}</div>
             </div>
           </div>
 
           <div
-            className={`transition transform ease-in-out duration-100 ${
-              !isOpenMainMenu ? 'opacity-0 scale-95' : 'ease-in opacity-100 scale-100'
-            } mt-3 px-2 space-y-1`}
+            className={`mt-3 px-2 space-y-1 transition transform ease-in-out duration-100 ${
+              !isOpenMainMenu ? 'hidden opacity-0 scale-95' : 'block ease-in opacity-100 scale-100'
+            }`}
           >
             <Link href="/app/profile">
               <a className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">
