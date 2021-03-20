@@ -1,13 +1,33 @@
-import Link from 'next/link'
-import { NextPageContext } from 'next'
-import { signIn, csrfToken } from 'next-auth/client'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { NextPageContext } from 'next'
+import { csrfToken, signIn } from 'next-auth/client'
+import Link from 'next/link'
+import { SyntheticEvent, useState } from 'react'
 
 type SignInProps = {
   csrfToken: string
 }
 
-function SignInPage({ csrfToken }: SignInProps) {
+function AuthSignInPage({ csrfToken }: SignInProps) {
+  const [email, setEmail] = useState('')
+  const [loading, setLoading] = useState(false)
+  const callbackUrl = `${process.env.NEXTAUTH_URL}/app/dashboard`
+
+  const handleSignInEmail = async (e: SyntheticEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault()
+      setLoading(true)
+      const result = await signIn('email', { email, callbackUrl })
+    } catch (error) {
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleEmail = (e: SyntheticEvent<HTMLInputElement>) => {
+    setEmail(e.currentTarget.value)
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
       <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
@@ -20,7 +40,7 @@ function SignInPage({ csrfToken }: SignInProps) {
         </h1>
         <div className="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
           <div className="px-5 py-7">
-            <form method="post" action="/api/auth/signin/email">
+            <form onSubmit={handleSignInEmail}>
               <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
 
               <label className="font-semibold text-sm text-gray-600 pb-1 block">E-mail</label>
@@ -29,29 +49,59 @@ function SignInPage({ csrfToken }: SignInProps) {
                 id="email"
                 name="email"
                 className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
+                onChange={handleEmail}
               />
-              <button
-                type="submit"
-                className="transition duration-200 bg-indigo-500 hover:bg-indigo-600 focus:bg-indigo-700 focus:shadow-sm focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
-              >
-                <span className="inline-block mr-2">Signin</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  className="w-4 h-4 inline-block"
+              {loading ? (
+                <button
+                  disabled
+                  className="transition duration-200 bg-indigo-500 hover:bg-indigo-600 focus:bg-indigo-700 focus:shadow-sm focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold inline-flex justify-center cursor-wait"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </button>
+                  <svg
+                    className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  disabled={!email}
+                  className="transition duration-200 bg-indigo-500 hover:bg-indigo-600 focus:bg-indigo-700 focus:shadow-sm focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
+                >
+                  <span className="inline-block mr-2">Signin</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    className="w-4 h-4 inline-block"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </button>
+              )}
             </form>
           </div>
 
           <div className="p-5">
             <div className="grid grid-cols-1 gap-1">
               <button
-                onClick={() => signIn('github')}
+                onClick={() => signIn('github', { callbackUrl })}
                 className="transition duration-200 flex justify-center items-center w-full p-4 my-2 text-black bg-white border-black rounded shadow ripple waves-light hover:shadow-lg hover:bg-gray-300 focus:outline-none"
               >
                 <FontAwesomeIcon size="lg" icon={['fab', 'github']} />
@@ -59,7 +109,7 @@ function SignInPage({ csrfToken }: SignInProps) {
               </button>
 
               <button
-                onClick={() => signIn('google')}
+                onClick={() => signIn('google', { callbackUrl })}
                 className="transition duration-200 flex justify-center items-center w-full p-4 my-2 text-black bg-white border-black rounded shadow ripple waves-light hover:shadow-lg hover:bg-gray-300 focus:outline-none"
               >
                 <FontAwesomeIcon size="lg" icon={['fab', 'google']} />
@@ -93,9 +143,9 @@ function SignInPage({ csrfToken }: SignInProps) {
   )
 }
 
-export default SignInPage
+export default AuthSignInPage
 
-export async function getServerSideProps(ctx: NextPageContext) {
+export const getServerSideProps = async (ctx: NextPageContext) => {
   return {
     props: {
       csrfToken: await csrfToken(ctx)
