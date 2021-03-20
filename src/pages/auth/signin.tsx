@@ -4,6 +4,8 @@ import { csrfToken, signIn } from 'next-auth/client'
 import Link from 'next/link'
 import { SyntheticEvent, useState } from 'react'
 
+import { HOST } from 'env'
+
 type SignInProps = {
   csrfToken: string
 }
@@ -11,7 +13,8 @@ type SignInProps = {
 function AuthSignInPage({ csrfToken }: SignInProps) {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
-  const callbackUrl = `${process.env.NEXTAUTH_URL}/app/dashboard`
+
+  const callbackUrl = `${HOST}/app/dashboard`
 
   const handleSignInEmail = async (e: SyntheticEvent<HTMLFormElement>) => {
     try {
