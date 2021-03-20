@@ -11,7 +11,8 @@ function ProfileForm({ user }: ProfileFormProps) {
       email: user.email
     }
   })
-  const onSubmit = (data) => console.log(data)
+
+  const onSubmit = () => console.log('onSubmit')
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
