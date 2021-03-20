@@ -1,1 +1,1 @@
-# nextjs-passwordless-auth
+# passwordless
