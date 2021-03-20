@@ -1,3 +1,5 @@
+import withAuth from 'lib/with-auth'
+
 import AppLayout from 'layouts/app'
 
 function CalendarPage() {
@@ -9,3 +11,5 @@ function CalendarPage() {
 }
 
 export default CalendarPage
+
+export const getServerSideProps = withAuth()

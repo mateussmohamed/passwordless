@@ -1,3 +1,5 @@
+import withAuth from 'lib/with-auth'
+
 import AppLayout from 'layouts/app'
 
 function TeamPage() {
@@ -9,3 +11,5 @@ function TeamPage() {
 }
 
 export default TeamPage
+
+export const getServerSideProps = withAuth()

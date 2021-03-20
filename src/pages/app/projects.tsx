@@ -1,3 +1,5 @@
+import withAuth from 'lib/with-auth'
+
 import AppLayout from 'layouts/app'
 
 function ProjectsPage() {
@@ -9,3 +11,5 @@ function ProjectsPage() {
 }
 
 export default ProjectsPage
+
+export const getServerSideProps = withAuth()

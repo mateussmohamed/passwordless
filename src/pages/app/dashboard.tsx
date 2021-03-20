@@ -1,3 +1,5 @@
+import withAuth from 'lib/with-auth'
+
 import AppLayout from 'layouts/app'
 
 function DashboardPage() {
@@ -9,3 +11,5 @@ function DashboardPage() {
 }
 
 export default DashboardPage
+
+export const getServerSideProps = withAuth()
