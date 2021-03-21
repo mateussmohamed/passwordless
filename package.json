@@ -7,9 +7,11 @@
     "start": "next start",
     "dev": "next dev",
     "build": "next build",
-    "prisma:studio": "npx prisma studio",
-    "prisma:dev": "npx prisma migrate dev --preview-feature",
-    "prisma:generate": "npx prisma generate"
+    "vercel-build": "prisma migrate deploy && next build",
+    "prisma:studio": "prisma studio",
+    "prisma:dev": "prisma migrate dev --preview-feature",
+    "prisma:generate": "prisma generate",
+    "postinstall": "prisma generate"
   },
   "repository": {
     "type": "git",
