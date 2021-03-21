@@ -52,11 +52,11 @@ After copying the examples, make sure to fill the variables with new values.
 
 # :bug: Issues
 
-Feel free to **file a new issue** with a respective title and description on the the [passwordless](https://github.com/mateussmohamed/passwordless/issues) repository. If you already found a solution to your problem, **i would love to review your pull request**! Have a look at our [contribution guidelines](https://github.com/mateussmohamed/passwordless/blob/master/.github/CONTRIBUTING.md) to find out about the coding standards.
+Feel free to **file a new issue** with a respective title and description on the the [passwordless](https://github.com/mateussmohamed/passwordless/issues) repository. If you already found a solution to your problem, **i would love to review your pull request**! Have a look at our [contribution guidelines](https://github.com/mateussmohamed/passwordless/blob/master/.github/contributing.md) to find out about the coding standards.
 
 # :tada: Contributing
 
-Check out the [contributing](https://github.com/mateussmohamed/passwordless/blob/master/.github/contributing.md.md) page to see the best places to file issues, start discussions and begin contributing.
+Check out the [contributing](https://github.com/mateussmohamed/passwordless/blob/master/.github/contributing.md) page to see the best places to file issues, start discussions and begin contributing.
 
 # :closed_book: License
 
