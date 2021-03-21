@@ -7,7 +7,7 @@
     "start": "next start",
     "dev": "next dev",
     "build": "next build",
-    "vercel-build": "prisma migrate deploy && next build",
+    "vercel-build": "prisma migrate deploy --preview-feature && next build",
     "prisma:studio": "prisma studio",
     "prisma:dev": "prisma migrate dev --preview-feature",
     "prisma:generate": "prisma generate",
