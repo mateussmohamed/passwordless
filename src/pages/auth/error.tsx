@@ -2,14 +2,14 @@ import { signOut } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
-import { HOST } from 'env'
+import { APP_URL } from 'env'
 
 function AuthErrorPage() {
   const router = useRouter()
   const { error } = router.query
 
   const handleSignOut = () => {
-    signOut({ callbackUrl: HOST })
+    signOut({ callbackUrl: APP_URL })
   }
 
   return (

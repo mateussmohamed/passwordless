@@ -1,3 +1,3 @@
-const HOST = process.env.NEXT_PUBLIC_HOST
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL
 
-export { HOST }
+export { APP_URL }
