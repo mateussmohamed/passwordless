@@ -30,9 +30,6 @@ const options = {
   ],
   adapter: Adapters.Prisma.Adapter({ prisma }),
   secret: String(process.env.SECRET),
-  session: {
-    jwt: true
-  },
   pages: {
     signIn: '/auth/signin',
     error: '/auth/error',
