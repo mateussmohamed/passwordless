@@ -9,8 +9,7 @@ type AppLayoutProps = {
 } & ProtectedPageProps
 
 function AppLayout({ children, pageTitle, session }: AppLayoutProps) {
-  const handleSignOut = (e: SyntheticEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
+  const handleSignOut = () => {
     signOut()
   }
 

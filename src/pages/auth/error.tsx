@@ -1,7 +1,6 @@
 import { signOut } from 'next-auth/client'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { SyntheticEvent } from 'react'
+import Link from 'next/link'
 
 import { HOST } from 'env'
 
@@ -9,8 +8,7 @@ function AuthErrorPage() {
   const router = useRouter()
   const { error } = router.query
 
-  const handleSignOut = (e: SyntheticEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
+  const handleSignOut = () => {
     signOut({ callbackUrl: HOST })
   }
 

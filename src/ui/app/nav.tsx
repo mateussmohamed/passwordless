@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { SyntheticEvent } from 'react'
 import Link from 'next/link'
 
 type AppLinkProps = {
@@ -15,8 +14,7 @@ function AppLink({ children, href }: AppLinkProps) {
       ? 'bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium'
       : 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
 
-  const handleClick = (e: SyntheticEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
+  const handleClick = () => {
     router.push(href)
   }
 
@@ -28,7 +26,7 @@ function AppLink({ children, href }: AppLinkProps) {
 }
 
 type AppNavProps = {
-  handleSignOut: (e: SyntheticEvent<HTMLAnchorElement>) => void
+  handleSignOut: () => void
   user: UserSessionProps
 }
 
