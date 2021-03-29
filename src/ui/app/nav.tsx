@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
+import UserAvatar from 'ui/user-avatar'
+
 type AppLinkProps = {
   children: React.ReactNode
   href: string
@@ -70,7 +72,7 @@ function AppNav({ handleSignOut, user }: AppNavProps) {
                     aria-haspopup="true"
                   >
                     <span className="sr-only">Open user menu</span>
-                    <img className="h-8 w-8 rounded-full" src={user.image} alt="" />
+                    <UserAvatar src={user.image} size="small" />
                   </button>
                 </div>
 
@@ -147,7 +149,7 @@ function AppNav({ handleSignOut, user }: AppNavProps) {
         <div className="pt-4 pb-3 border-t border-gray-700">
           <div className="flex items-center px-5">
             <div className="flex-shrink-0">
-              <img className="h-10 w-10 rounded-full" src={user.image} alt="" />
+              <UserAvatar src={user.image} />
             </div>
             <div className="ml-3">
               <div className="text-base font-normal leading-none text-white">{user.name}</div>
