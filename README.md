@@ -34,6 +34,10 @@ SSH URLs provide access to a Git repository via SSH, a secure protocol. If you h
 
 **Install dependencies**
 
+```npm install```
+
+or
+
 ```yarn install```
 
 Create your environment variables based on the examples of ```.env.example```
