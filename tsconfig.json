@@ -2,7 +2,11 @@
   "compilerOptions": {
     "baseUrl": "src",
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -23,7 +27,8 @@
       "@rebass/forms/styled-components": [
         "node_modules/@types/rebass__forms"
       ]
-    }
+    },
+    "incremental": true
   },
   "include": [
     "next-env.d.ts",
