@@ -1,8 +1,8 @@
+import { SyntheticEvent, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NextPageContext } from 'next'
-import { csrfToken, signIn } from 'next-auth/client'
 import Link from 'next/link'
-import { SyntheticEvent, useState } from 'react'
+import { getCsrfToken, signIn } from 'next-auth/react'
 
 import { APP_URL } from 'env'
 
@@ -146,12 +146,13 @@ function AuthSignInPage({ csrfToken }: SignInProps) {
   )
 }
 
-export default AuthSignInPage
-
-export const getServerSideProps = async (ctx: NextPageContext) => {
+export async function getServerSideProps({ req }: NextPageContext) {
+  const csrfToken = await getCsrfToken({ req })
   return {
     props: {
-      csrfToken: await csrfToken(ctx)
+      csrfToken
     }
   }
 }
+
+export default AuthSignInPage

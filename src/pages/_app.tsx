@@ -1,4 +1,4 @@
-import { Provider } from 'next-auth/client'
+import { SessionProvider } from 'next-auth/react'
 import { AppProps } from 'next/app'
 import NextNprogress from 'nextjs-progressbar'
 
@@ -12,10 +12,10 @@ library.add(fab, fas)
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <Provider session={pageProps.session}>
+    <SessionProvider session={pageProps.session}>
       <NextNprogress color="#6366f1" startPosition={0.3} stopDelayMs={200} height={5} />
       <Component {...pageProps} />
-    </Provider>
+    </SessionProvider>
   )
 }
 

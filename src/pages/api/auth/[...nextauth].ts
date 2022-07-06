@@ -1,22 +1,24 @@
-import { NextApiHandler } from 'next'
 import NextAuth from 'next-auth'
-import Providers from 'next-auth/providers'
-import Adapters from 'next-auth/adapters'
+
+import GithubProvider from 'next-auth/providers/github'
+import GoogleProvider from 'next-auth/providers/google'
+import EmailProvider from 'next-auth/providers/email'
 
 import prisma from 'lib/prisma'
 
-const options = {
+import { PrismaAdapter } from '@next-auth/prisma-adapter'
+
+const NextAuthOptions = {
   providers: [
-    Providers.GitHub({
+    GithubProvider({
       clientId: String(process.env.GITHUB_ID),
       clientSecret: String(process.env.GITHUB_SECRET)
     }),
-    Providers.Google({
+    GoogleProvider({
       clientId: String(process.env.GOOGLE_CLIENT_ID),
-      clientSecret: String(process.env.GOOGLE_CLIENT_SECRET),
-      authorizationUrl: String(process.env.GOOGLE_AUTHORIZATION_URL)
+      clientSecret: String(process.env.GOOGLE_CLIENT_SECRET)
     }),
-    Providers.Email({
+    EmailProvider({
       server: {
         host: String(process.env.SMTP_HOST),
         port: Number(process.env.SMTP_PORT),
@@ -28,7 +30,7 @@ const options = {
       from: String(process.env.SMTP_FROM)
     })
   ],
-  adapter: Adapters.Prisma.Adapter({ prisma }),
+  adapter: PrismaAdapter(prisma),
   secret: String(process.env.SECRET),
   pages: {
     signIn: '/auth/signin',
@@ -37,6 +39,4 @@ const options = {
   }
 }
 
-const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options)
-
-export default authHandler
+export default NextAuth(NextAuthOptions)
