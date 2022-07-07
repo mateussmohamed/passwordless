@@ -1,3 +1,5 @@
+import React from 'react'
+
 import LandingLayout from 'layouts/landing'
 
 import { LandingHero } from 'ui/landing'

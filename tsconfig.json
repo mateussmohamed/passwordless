@@ -13,8 +13,6 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "sourceMap": true,
-    "outDir": "dist",
     "jsx": "preserve",
     "paths": {
       "rebass/styled-components": ["node_modules/@types/rebass"],
@@ -22,6 +20,6 @@
     },
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

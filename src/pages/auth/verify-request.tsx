@@ -1,4 +1,7 @@
+import React from 'react'
+
 import Link from 'next/link'
+import Image from 'next/image'
 
 function AuthVerifyRequestPage() {
   return (
@@ -6,7 +9,7 @@ function AuthVerifyRequestPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:text-center">
           <h1 className="font-bold text-center text-2xl mb-5">
-            <img
+            <Image
               className="mx-auto h-12 w-auto"
               src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
               alt="Workflow"

@@ -1,8 +1,10 @@
-import { SyntheticEvent, useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { SyntheticEvent, useState } from 'react'
 import { NextPageContext } from 'next'
-import Link from 'next/link'
+import Image from 'next/image'
 import { getCsrfToken, signIn } from 'next-auth/react'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Link from 'next/link'
 
 import { APP_URL } from 'env'
 
@@ -21,6 +23,7 @@ function AuthSignInPage({ csrfToken }: SignInProps) {
       setLoading(true)
       await signIn('email', { email, callbackUrl })
     } catch (error) {
+      console.log('🚀 ~ file: signin.tsx ~ line 24 ~ handleSignInEmail ~ error', error)
     } finally {
       setLoading(false)
     }
@@ -34,7 +37,7 @@ function AuthSignInPage({ csrfToken }: SignInProps) {
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
       <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
         <h1 className="font-bold text-center text-2xl mb-5">
-          <img
+          <Image
             className="mx-auto h-12 w-auto"
             src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
             alt="Workflow"

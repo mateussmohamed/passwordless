@@ -1,4 +1,4 @@
-import { useState, SyntheticEvent } from 'react'
+import React, { useState, SyntheticEvent } from 'react'
 import UserAvatar from 'ui/user-avatar'
 
 type ProfilePictureProps = {

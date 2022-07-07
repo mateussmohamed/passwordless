@@ -14,7 +14,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
     const { error } = await schema.validateAsync(body)
 
-    if (Boolean(error)) {
+    if (error) {
       res.status(400).json({
         message: error
       })
@@ -27,11 +27,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
     res.status(200).json(updateUser)
   } catch (error) {
-    if (error instanceof Error)
+    if (error instanceof Error) {
       res.status(500).json({
         error: true,
         message: error?.message
       })
+    }
   }
 }
 

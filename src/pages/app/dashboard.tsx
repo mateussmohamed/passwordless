@@ -1,3 +1,5 @@
+import React from 'react'
+
 import withAuth from 'lib/with-auth'
 
 import AppLayout from 'layouts/app'
