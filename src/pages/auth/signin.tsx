@@ -9,18 +9,17 @@ import { APP_URL } from 'env'
 type SignInProps = {
   csrfToken: string
 }
+const callbackUrl = `${APP_URL}/app/dashboard`
 
 function AuthSignInPage({ csrfToken }: SignInProps) {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const callbackUrl = `${APP_URL}/app/dashboard`
-
   const handleSignInEmail = async (e: SyntheticEvent<HTMLFormElement>) => {
     try {
       e.preventDefault()
       setLoading(true)
-      const result = await signIn('email', { email, callbackUrl })
+      await signIn('email', { email, callbackUrl })
     } catch (error) {
     } finally {
       setLoading(false)

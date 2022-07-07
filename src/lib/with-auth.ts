@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext } from 'next'
 
-import { getSession } from 'next-auth/client'
+import { getSession } from 'next-auth/react'
 
 export default function withAuth() {
   return async (context: GetServerSidePropsContext) => {

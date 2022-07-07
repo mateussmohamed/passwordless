@@ -1,5 +1,5 @@
-import { ReactNode, SyntheticEvent } from 'react'
-import { signOut } from 'next-auth/client'
+import { ReactNode } from 'react'
+import { signOut } from 'next-auth/react'
 
 import { AppNav, AppHeader, AppContent } from 'ui/app'
 

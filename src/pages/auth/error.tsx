@@ -1,4 +1,4 @@
-import { signOut } from 'next-auth/client'
+import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
