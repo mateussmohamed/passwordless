@@ -12,7 +12,6 @@ function ProfilePicture({ user }: ProfilePictureProps) {
   const handleUpdatePicture = async (e: SyntheticEvent<HTMLInputElement>) => {
     try {
       if (e.currentTarget?.files) {
-        const email = user.email
         setLoading(true)
         const file = e.currentTarget.files[0]
         const formData = new FormData()

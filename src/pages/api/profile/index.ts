@@ -30,10 +30,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
     res.status(200).json({ email: updateUser.email, image: updateUser.image, name: updateUser.name })
   } catch (error) {
-    res.status(500).json({
-      error: true,
-      messagem: error?.message
-    })
+    if (error instanceof Error)
+      res.status(500).json({
+        error: true,
+        message: error?.message
+      })
   }
 }
 
