@@ -11,8 +11,8 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter'
 const NextAuthOptions = {
   providers: [
     GithubProvider({
-      clientId: String(process.env.GITHUB_ID),
-      clientSecret: String(process.env.GITHUB_SECRET)
+      clientId: String(process.env.GITHUB_CLIENT_ID),
+      clientSecret: String(process.env.GITHUB_CLIENT_SECRET)
     }),
     GoogleProvider({
       clientId: String(process.env.GOOGLE_CLIENT_ID),
@@ -31,7 +31,6 @@ const NextAuthOptions = {
     })
   ],
   adapter: PrismaAdapter(prisma),
-  secret: String(process.env.SECRET),
   pages: {
     signIn: '/auth/signin',
     error: '/auth/error',
