@@ -5,7 +5,12 @@ type ProfileFormProps = {
 }
 
 function ProfileForm({ user }: ProfileFormProps) {
-  const { register, handleSubmit, errors, setValue } = useForm({
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors }
+  } = useForm({
     defaultValues: {
       name: user.name,
       email: user.email,
@@ -20,13 +25,16 @@ function ProfileForm({ user }: ProfileFormProps) {
         headers: {
           'Content-type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({ email: data.email, name: data.name })
       })
 
-      const user = await response.json()
-      setValue('name', user.name)
-      setValue('email', user.email)
-      setValue('image', user.image)
+      const result = await response.json()
+
+      if (!result?.error) {
+        setValue('name', result.name)
+        setValue('email', result.email)
+        setValue('image', result.image)
+      }
     } catch (error) {
       console.error(error)
     }
@@ -42,11 +50,10 @@ function ProfileForm({ user }: ProfileFormProps) {
             </label>
             <input
               type="text"
-              name="name"
               id="name"
               autoComplete="given-name"
               className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-              ref={register({ required: true })}
+              {...register('name', { required: true })}
             />
             {errors.name && <span className="text-red-700 text-xs">This field is required</span>}
           </div>
@@ -57,11 +64,10 @@ function ProfileForm({ user }: ProfileFormProps) {
             </label>
             <input
               type="text"
-              name="email"
               id="email"
               autoComplete="email"
               className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-              ref={register({ required: true })}
+              {...register('email', { required: true })}
             />
             {errors.email && <span className="text-red-700 text-xs">This field is required</span>}
           </div>
