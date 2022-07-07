@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 import UserAvatar from 'ui/user-avatar'
+import Image from 'next/image'
 
 type AppLinkProps = {
   children: React.ReactNode
@@ -41,11 +42,7 @@ function AppNav({ handleSignOut, user }: AppNavProps) {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <img
-                className="h-8 w-8"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                alt="Workflow"
-              />
+              <Image className="mx-auto" src="/logo.svg" alt="Logo" width="48px" height="48px" />
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">

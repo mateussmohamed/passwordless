@@ -2,31 +2,10 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 function Header() {
   const [isOpen, setOpen] = useState(false)
-
-  // const [session, loading] = useSession()
-
-  // if (loading) {
-  //   return <div>Loading...</div>
-  // }
-
-  // if (session) {
-  //   return (
-  //     <div>
-  //       Hello, {session.user.email ?? session.user.name} <br />
-  //       <button onClick={() => signOut()}>Sign out</button>
-  //     </div>
-  //   )
-  // } else {
-  //   return (
-  //     <div>
-  //       You are not logged in! <br />
-  //       <button onClick={() => signIn()}>Sign in</button>
-  //     </div>
-  //   )
-  // }
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -37,10 +16,7 @@ function Header() {
               <div className="flex items-center justify-between w-full md:w-auto">
                 <a href="#">
                   <span className="sr-only">Workflow</span>
-                  <img
-                    className="h-8 w-auto sm:h-10"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                  />
+                  <Image className="mx-auto" src="/logo.svg" alt="Logo" width="48px" height="48px" />
                 </a>
                 <div className="-mr-2 flex items-center md:hidden">
                   <button
@@ -65,7 +41,12 @@ function Header() {
               </div>
             </div>
             <div className="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
-              <a href="https://nextjs.org/" target="_blank" className="font-medium text-gray-500 hover:text-gray-900">
+              <a
+                href="https://nextjs.org/"
+                target="_blank"
+                className="font-medium text-gray-500 hover:text-gray-900"
+                rel="noreferrer"
+              >
                 Next.js
               </a>
 
@@ -73,11 +54,17 @@ function Header() {
                 href="https://next-auth.js.org"
                 target="_blank"
                 className="font-medium text-gray-500 hover:text-gray-900"
+                rel="noreferrer"
               >
                 NextAuth.js
               </a>
 
-              <a href="https://reactjs.org" target="_blank" className="font-medium text-gray-500 hover:text-gray-900">
+              <a
+                href="https://reactjs.org"
+                target="_blank"
+                className="font-medium text-gray-500 hover:text-gray-900"
+                rel="noreferrer"
+              >
                 React.js
               </a>
 
@@ -85,6 +72,7 @@ function Header() {
                 href="https://tailwindcss.com"
                 target="_blank"
                 className="font-medium text-gray-500 hover:text-gray-900"
+                rel="noreferrer"
               >
                 Tailwindcss
               </a>
@@ -104,11 +92,7 @@ function Header() {
           <div className="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
             <div className="px-5 pt-4 flex items-center justify-between">
               <div>
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                  alt=""
-                />
+                <Image className="mx-auto" src="/logo.svg" alt="Logo" width="48px" height="48px" />
               </div>
               <div className="-mr-2">
                 <button
@@ -135,6 +119,7 @@ function Header() {
                 href="https://nextjs.org"
                 target="_blank"
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                rel="noreferrer"
               >
                 Next.js
               </a>
@@ -143,6 +128,7 @@ function Header() {
                 href="https://next-auth.js.org"
                 target="_blank"
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                rel="noreferrer"
               >
                 NextAuth.js
               </a>
@@ -151,6 +137,7 @@ function Header() {
                 href="https://reactjs.org"
                 target="_blank"
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                rel="noreferrer"
               >
                 React.js
               </a>
@@ -159,6 +146,7 @@ function Header() {
                 href="https://tailwindcss.com"
                 target="_blank"
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                rel="noreferrer"
               >
                 Tailwindcss
               </a>

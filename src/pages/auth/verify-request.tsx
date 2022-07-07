@@ -9,11 +9,7 @@ function AuthVerifyRequestPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:text-center">
           <h1 className="font-bold text-center text-2xl mb-5">
-            <Image
-              className="mx-auto h-12 w-auto"
-              src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-              alt="Workflow"
-            />
+            <Image className="mx-auto" src="/logo.svg" alt="Logo" width="128px" height="128px" />
           </h1>
           <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
             Check your email
