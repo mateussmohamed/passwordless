@@ -1,7 +1,7 @@
 declare type UserSessionProps = {
-  email?: string
-  image: string
+  email: string
   name: string
+  image?: string
 }
 
 declare type SessionProps = {
