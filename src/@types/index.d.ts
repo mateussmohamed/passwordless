@@ -1,4 +1,5 @@
 declare type UserSessionProps = {
+  id: string
   email: string
   name: string
   image?: string

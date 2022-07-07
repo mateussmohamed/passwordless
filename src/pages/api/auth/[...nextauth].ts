@@ -1,10 +1,10 @@
-import NextAuth from 'next-auth'
+import NextAuth, { Session, User } from 'next-auth'
 
 import GithubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
 import EmailProvider from 'next-auth/providers/email'
 
-import prisma from 'lib/prisma'
+import { prisma } from 'lib/prisma'
 
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 
@@ -35,6 +35,11 @@ const NextAuthOptions = {
     signIn: '/auth/signin',
     error: '/auth/error',
     verifyRequest: '/auth/verify-request'
+  },
+  callbacks: {
+    async session({ session, user }: { user: User; session: Session }) {
+      return { user, expires: session?.expires }
+    }
   }
 }
 

@@ -3,7 +3,7 @@ import multer from 'multer'
 import runMiddleware from 'utils/run-middleware'
 import s3Upload from 'utils/aws/s3-upload'
 
-import prisma from 'lib/prisma'
+import { prisma } from 'lib/prisma'
 
 const { S3_BUCKET_URL } = process.env
 

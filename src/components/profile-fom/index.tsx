@@ -9,7 +9,7 @@ function ProfileForm({ user }: ProfileFormProps) {
     register,
     handleSubmit,
     setValue,
-    formState: { errors }
+    formState: { errors, isDirty }
   } = useForm({
     defaultValues: {
       name: user.name,
@@ -18,14 +18,14 @@ function ProfileForm({ user }: ProfileFormProps) {
     }
   })
 
-  const onSubmit = async (data: UserSessionProps) => {
+  const onSubmit = async ({ name }: { name: string }) => {
     try {
       const response = await fetch('/api/profile', {
         method: 'POST',
         headers: {
           'Content-type': 'application/json'
         },
-        body: JSON.stringify({ email: data.email, name: data.name })
+        body: JSON.stringify({ id: user.id, name })
       })
 
       const result = await response.json()
@@ -63,6 +63,7 @@ function ProfileForm({ user }: ProfileFormProps) {
               Email address
             </label>
             <input
+              disabled
               type="text"
               id="email"
               autoComplete="email"
@@ -74,8 +75,11 @@ function ProfileForm({ user }: ProfileFormProps) {
         </div>
         <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
           <button
+            disabled={!isDirty}
             type="submit"
-            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className={`${
+              !isDirty && 'opacity-50 cursor-not-allowed'
+            } inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
           >
             Save
           </button>
