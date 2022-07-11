@@ -1,5 +1,3 @@
-// import { signIn, signOut, useSession } from 'next-auth/client'
-
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -78,7 +76,7 @@ function Header() {
               </a>
 
               <Link href="/auth/signin">
-                <a className="font-medium text-indigo-600 hover:text-indigo-500">Log in</a>
+                <a className="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a>
               </Link>
             </div>
           </nav>
@@ -154,7 +152,7 @@ function Header() {
 
             <Link href="/auth/signin">
               <a className="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100">
-                Log in
+                Signin
               </a>
             </Link>
           </div>

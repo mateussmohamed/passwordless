@@ -7,19 +7,33 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 
 import { APP_URL } from 'env'
+import { useForm } from 'react-hook-form'
 
 type SignInProps = {
   csrfToken: string
 }
+
 const callbackUrl = `${APP_URL}/app/dashboard`
 
+const EMAIL_PATTERN =
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
 function AuthSignInPage({ csrfToken }: SignInProps) {
-  const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const handleSignInEmail = async (e: SyntheticEvent<HTMLFormElement>) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isDirty }
+  } = useForm({
+    mode: 'onBlur',
+    defaultValues: {
+      email: ''
+    }
+  })
+
+  const onSignInEmail = async ({ email }: { email: string }) => {
     try {
-      e.preventDefault()
       setLoading(true)
       await signIn('email', { email, callbackUrl })
     } catch (error) {
@@ -27,10 +41,6 @@ function AuthSignInPage({ csrfToken }: SignInProps) {
     } finally {
       setLoading(false)
     }
-  }
-
-  const handleEmail = (e: SyntheticEvent<HTMLInputElement>) => {
-    setEmail(e.currentTarget.value)
   }
 
   return (
@@ -41,21 +51,30 @@ function AuthSignInPage({ csrfToken }: SignInProps) {
         </h1>
         <div className="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
           <div className="px-5 py-7">
-            <form onSubmit={handleSignInEmail}>
+            <form onSubmit={handleSubmit(onSignInEmail)}>
               <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+              <div className="col-span-6 sm:col-span-3">
+                <label className="font-semibold text-sm text-gray-600 pb-1 block">E-mail</label>
+                <input
+                  type="text"
+                  id="email"
+                  disabled={loading}
+                  className="border rounded-lg px-3 py-2 mt-1 mb-1 text-sm w-full"
+                  {...register('email', {
+                    required: 'E-mail is required',
+                    pattern: {
+                      value: EMAIL_PATTERN,
+                      message: 'Invalid e-mail.'
+                    }
+                  })}
+                />
+                {errors.email && <span className="text-red-700 text-xs">{errors.email.message}</span>}
+              </div>
 
-              <label className="font-semibold text-sm text-gray-600 pb-1 block">E-mail</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
-                onChange={handleEmail}
-              />
               {loading ? (
                 <button
                   disabled
-                  className="transition duration-200 bg-indigo-500 hover:bg-indigo-600 focus:bg-indigo-700 focus:shadow-sm focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold inline-flex justify-center cursor-wait"
+                  className="transition duration-200 bg-indigo-500 hover:bg-indigo-600 focus:bg-indigo-700 focus:shadow-sm focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold inline-flex justify-center cursor-wait mt-2"
                 >
                   <svg
                     className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
@@ -81,10 +100,12 @@ function AuthSignInPage({ csrfToken }: SignInProps) {
               ) : (
                 <button
                   type="submit"
-                  disabled={!email}
-                  className="transition duration-200 bg-indigo-500 hover:bg-indigo-600 focus:bg-indigo-700 focus:shadow-sm focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
+                  disabled={!isDirty}
+                  className={`${
+                    !isDirty && 'opacity-50 cursor-not-allowed'
+                  } transition duration-200 bg-indigo-500 hover:bg-indigo-600 focus:bg-indigo-700 focus:shadow-sm focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block mt-2`}
                 >
-                  <span className="inline-block mr-2">Signin</span>
+                  <span className="inline-block mr-2">Sign in</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

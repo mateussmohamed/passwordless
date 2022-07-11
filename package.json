@@ -10,7 +10,7 @@
     "lint": "next lint",
     "vercel-build": "prisma migrate deploy --preview-feature && next build",
     "prisma:studio": "prisma studio",
-    "prisma:dev": "prisma migrate dev --preview-feature",
+    "prisma:migrate": "prisma migrate",
     "prisma:generate": "prisma generate",
     "postinstall": "prisma generate"
   },
@@ -49,6 +49,7 @@
     "@types/multer": "^1.4.5",
     "@types/next-auth": "^3.1.25",
     "@types/node": "^18.0.3",
+    "@types/nodemailer": "^6.4.4",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "autoprefixer": "^10.2.5",
