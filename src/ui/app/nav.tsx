@@ -42,7 +42,7 @@ function AppNav({ handleSignOut, user }: AppNavProps) {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <Image className="mx-auto" src="/logo.svg" alt="Logo" width="48px" height="48px" />
+              <Image className="mx-auto" src="/logo.svg" alt="Logo" width="48" height="48" />
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
@@ -81,10 +81,12 @@ function AppNav({ handleSignOut, user }: AppNavProps) {
                   aria-orientation="vertical"
                   aria-labelledby="user-menu"
                 >
-                  <Link href="/app/profile">
-                    <a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                      Profile
-                    </a>
+                  <Link
+                    href="/app/profile"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    role="menuitem"
+                  >
+                    Profile
                   </Link>
                   <a
                     onClick={handleSignOut}
@@ -159,10 +161,11 @@ function AppNav({ handleSignOut, user }: AppNavProps) {
               !isOpenMainMenu ? 'hidden opacity-0 scale-95' : 'block ease-in opacity-100 scale-100'
             }`}
           >
-            <Link href="/app/profile">
-              <a className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">
-                Profile
-              </a>
+            <Link
+              href="/app/profile"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+            >
+              Profile
             </Link>
             <a
               onClick={handleSignOut}

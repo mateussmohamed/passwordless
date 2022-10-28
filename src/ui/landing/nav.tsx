@@ -14,7 +14,7 @@ function Header() {
               <div className="flex items-center justify-between w-full md:w-auto">
                 <a href="#">
                   <span className="sr-only">Workflow</span>
-                  <Image className="mx-auto" src="/logo.svg" alt="Logo" width="48px" height="48px" />
+                  <Image className="mx-auto" src="/logo.svg" alt="Logo" width="48" height="48" />
                 </a>
                 <div className="-mr-2 flex items-center md:hidden">
                   <button
@@ -75,8 +75,8 @@ function Header() {
                 Tailwindcss
               </a>
 
-              <Link href="/auth/signin">
-                <a className="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a>
+              <Link href="/auth/signin" className="font-medium text-indigo-600 hover:text-indigo-500">
+                Sign in
               </Link>
             </div>
           </nav>
@@ -90,7 +90,7 @@ function Header() {
           <div className="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
             <div className="px-5 pt-4 flex items-center justify-between">
               <div>
-                <Image className="mx-auto" src="/logo.svg" alt="Logo" width="48px" height="48px" />
+                <Image className="mx-auto" src="/logo.svg" alt="Logo" width="48" height="48" />
               </div>
               <div className="-mr-2">
                 <button
@@ -150,10 +150,11 @@ function Header() {
               </a>
             </div>
 
-            <Link href="/auth/signin">
-              <a className="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100">
-                Signin
-              </a>
+            <Link
+              href="/auth/signin"
+              className="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100"
+            >
+              Signin
             </Link>
           </div>
         </div>
