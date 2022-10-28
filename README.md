@@ -9,13 +9,20 @@
 
 # :pushpin: Table of Contents
 
-* [Features](#rocket-features)
-* [Installation](#construction_worker-installation)
-* [Getting Started](#runner-getting-started)
-* [FAQ](#postbox-faq)
-* [Found a bug? Missing a specific feature?](#bug-issues)
-* [Contributing](#tada-contributing)
-* [License](#closed_book-license)
+- [passwordless](#passwordless)
+- [:pushpin: Table of Contents](#pushpin-table-of-contents)
+- [:question: Why?](#question-why)
+    - [TODO;](#todo)
+- [:rocket: Features](#rocket-features)
+    - [TODO;](#todo-1)
+- [:construction_worker: Installation](#construction_worker-installation)
+- [:runner: Getting Started](#runner-getting-started)
+    - [TODO;](#todo-2)
+- [:postbox: Faq](#postbox-faq)
+    - [TODO;](#todo-3)
+- [:bug: Issues](#bug-issues)
+- [:tada: Contributing](#tada-contributing)
+- [:closed_book: License](#closed_book-license)
 
 
 # :question: Why?
@@ -28,7 +35,7 @@
 
 # :construction_worker: Installation
 
-**You need to install [Node.js](https://nodejs.org/en/download/) and [Yarn](https://yarnpkg.com/) first, then in order to clone the project via HTTPS, run this command:**
+**You need to install [Node.js](https://nodejs.org/en/download/) and [pnpm](https://pnpm.io) first, then in order to clone the project via HTTPS, run this command:**
 
 ```git clone https://github.com/mateussmohamed/passwordless.git```
 
@@ -42,7 +49,7 @@ SSH URLs provide access to a Git repository via SSH, a secure protocol. If you h
 
 or
 
-```yarn install```
+```pnpm install```
 
 Create your environment variables based on the examples of ```.env.example```
 

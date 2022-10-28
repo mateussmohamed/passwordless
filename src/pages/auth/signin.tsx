@@ -47,7 +47,7 @@ function AuthSignInPage({ csrfToken }: SignInProps) {
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
       <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
         <h1 className="font-bold text-center text-2xl mb-5">
-          <Image className="mx-auto" src="/logo.svg" alt="Logo" width="128px" height="128px" />
+          <Image className="mx-auto" src="/logo.svg" alt="Logo" width="128" height="128" />
         </h1>
         <div className="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
           <div className="px-5 py-7">
@@ -153,8 +153,8 @@ function AuthSignInPage({ csrfToken }: SignInProps) {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
-                <Link href="/">
-                  <a className="inline-block ml-1">Back to home</a>
+                <Link href="/" className="inline-block ml-1">
+                  Back to home
                 </Link>
               </button>
             </div>
