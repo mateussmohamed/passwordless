@@ -15,9 +15,9 @@ const sizes = {
 }
 
 const width = {
-  small: { width: '40px', height: '40px' },
-  medium: { width: '64px', height: '64px' },
-  large: { width: '128px', height: '128px' }
+  small: { width: 40, height: 40 },
+  medium: { width: 64, height: 64 },
+  large: { width: 128, height: 128 }
 }
 
 function UserAvatar({ src, loading, size = 'small' }: UserAvatarProps) {
