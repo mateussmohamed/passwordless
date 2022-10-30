@@ -27,13 +27,14 @@ pnpm-debug.log*
 
 # local env files
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env*.local
 
 # vercel
 .vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
 
 #service worker
 public/sw.js
@@ -41,3 +42,4 @@ public/workbox-*.js
 
 #postgres docker folder
 data
+.vscode
