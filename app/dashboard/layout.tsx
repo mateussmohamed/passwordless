@@ -1,12 +1,10 @@
-import { ReactNode } from 'react'
 // import { signOut } from 'next-auth/react'
 
 import DashboardNav from './components/dashboard-nav'
 
-type DashboardLayoutProps = {
-  children?: ReactNode
-  pageTitle?: string
-} & ProtectedPageProps
+interface DashboardLayoutProps {
+  children: React.ReactNode
+}
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
