@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
+    "baseUrl": ".",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -14,12 +14,16 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "incremental": true,
     "paths": {
-      "rebass/styled-components": ["node_modules/@types/rebass"],
-      "@rebass/forms/styled-components": ["node_modules/@types/rebass__forms"]
+      "~/components/*": ["components/*"],
+      "~/lib/*": ["lib/*"],
+      "~/styles/*": ["styles/*"],
+      "~/ui/*": ["ui/*"],
+      "~/utils/*": ["utils/*"]
     },
-    "incremental": true
+    "plugins": [{ "name": "next" }]
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

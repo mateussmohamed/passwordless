@@ -26,10 +26,6 @@
   },
   "homepage": "https://github.com/mateussmohamed/nextjs-passwordless-auth#readme",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.2.0",
-    "@fortawesome/free-brands-svg-icons": "^6.2.0",
-    "@fortawesome/free-solid-svg-icons": "^6.2.0",
-    "@fortawesome/react-fontawesome": "^0.2.0",
     "@next-auth/prisma-adapter": "^1.0.5",
     "@prisma/client": "^4.5.0",
     "@tailwindcss/forms": "^0.5.3",
@@ -47,7 +43,6 @@
   "devDependencies": {
     "@tailwindcss/jit": "^0.1.18",
     "@types/multer": "^1.4.7",
-    "@types/next-auth": "^3.15.0",
     "@types/node": "^18.11.7",
     "@types/nodemailer": "^6.4.6",
     "@types/react": "^18.0.24",
