@@ -1,4 +1,5 @@
-// import { signOut } from 'next-auth/react'
+import { unstable_getServerSession } from 'next-auth/next'
+import { authOptions } from 'pages/api/auth/[...nextauth]'
 
 import DashboardNav from './components/dashboard-nav'
 
@@ -6,15 +7,16 @@ interface DashboardLayoutProps {
   children: React.ReactNode
 }
 
-export default function DashboardLayout({ children }: DashboardLayoutProps) {
+export default async function DashboardLayout({ children }: DashboardLayoutProps) {
+  const session = await unstable_getServerSession(authOptions)
+
   return (
     <div className="relative bg-white overflow-hidden">
       <DashboardNav
         user={{
-          id: '12312312312',
-          email: 'mateuss.dev@gmail.com',
-          name: 'Mateus Santana',
-          image: ''
+          email: String(session?.user?.email),
+          name: String(session?.user?.name),
+          image: String(session?.user?.image)
         }}
       />
 

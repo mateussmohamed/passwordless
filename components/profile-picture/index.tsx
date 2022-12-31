@@ -4,7 +4,9 @@ import { useState, SyntheticEvent } from 'react'
 import UserAvatar from 'ui/user-avatar'
 
 type ProfilePictureProps = {
-  user: UserSessionProps
+  user: {
+    id: string
+  } & UserSessionProps
 }
 
 function ProfilePicture({ user }: ProfilePictureProps) {

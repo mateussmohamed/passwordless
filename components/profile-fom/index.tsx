@@ -3,7 +3,9 @@
 import { useForm } from 'react-hook-form'
 
 type ProfileFormProps = {
-  user: UserSessionProps
+  user: {
+    id: string
+  } & UserSessionProps
 }
 
 function ProfileForm({ user }: ProfileFormProps) {
