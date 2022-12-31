@@ -6,6 +6,7 @@ import Link from 'next/link'
 
 import { APP_URL } from '~/lib/env'
 import { useForm } from 'react-hook-form'
+import { signIn } from 'next-auth/react'
 
 const callbackUrl = `${APP_URL}/dashboard`
 
@@ -18,6 +19,7 @@ type SignInProps = {
 
 export default function SigninForm({ csrfToken }: SignInProps) {
   const [loading, setLoading] = useState(false)
+  console.log('🚀 ~ file: signin-form.tsx:22 ~ SigninForm ~ loading', loading)
 
   const {
     register,
@@ -41,6 +43,14 @@ export default function SigninForm({ csrfToken }: SignInProps) {
     }
   }
 
+  const onProviderSignIn = async (provider: string) => {
+    try {
+      await signIn(provider, { callbackUrl })
+    } catch (error) {
+      console.log('🚀 ~ file: signin-form.tsx:51 ~ onProviderSignIn ~ error', error)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
       <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
@@ -48,7 +58,7 @@ export default function SigninForm({ csrfToken }: SignInProps) {
           <Image className="mx-auto" src="/logo.svg" alt="Logo" width="128" height="128" />
         </h1>
         <div className="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
-          <div className="px-5 py-7">
+          {/* <div className="px-5 py-7">
             <form onSubmit={handleSubmit(onSignInEmail)}>
               <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
               <div className="col-span-6 sm:col-span-3">
@@ -116,26 +126,15 @@ export default function SigninForm({ csrfToken }: SignInProps) {
                 </button>
               )}
             </form>
-          </div>
+          </div> */}
 
           <div className="p-5">
             <div className="grid grid-cols-1 gap-1">
               <button
-                onClick={() => {
-                  //signIn('github', { callbackUrl })
-                }}
+                onClick={() => onProviderSignIn('github')}
                 className="transition duration-200 flex justify-center items-center w-full p-4 my-2 text-black bg-white border-black rounded-lg shadow ripple waves-light hover:shadow-lg hover:bg-gray-100 focus:outline-none"
               >
                 Continue with Github
-              </button>
-
-              <button
-                onClick={() => {
-                  // signIn('google', { callbackUrl })
-                }}
-                className="transition duration-200 flex justify-center items-center w-full p-4 my-2 text-black bg-white border-black rounded-lg shadow ripple waves-light hover:shadow-lg hover:bg-gray-100 focus:outline-none"
-              >
-                Continue with Google
               </button>
             </div>
           </div>
@@ -154,7 +153,7 @@ export default function SigninForm({ csrfToken }: SignInProps) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
                 <Link href="/" className="inline-block ml-1">
-                  Back to home
+                  Back to site
                 </Link>
               </button>
             </div>

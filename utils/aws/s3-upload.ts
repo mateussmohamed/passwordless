@@ -13,7 +13,6 @@ config.update({
 // Create S3 service object
 const s3 = new S3()
 
-
 const upload = async (Key: string, Body: Buffer, ContentType: string) => {
   try {
     return s3

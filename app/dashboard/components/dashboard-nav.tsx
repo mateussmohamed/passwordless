@@ -2,10 +2,13 @@
 
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
+import Image from 'next/image'
 import Link from 'next/link'
+import { signOut } from 'next-auth/react'
 
 import UserAvatar from '~/ui/user-avatar'
-import Image from 'next/image'
+
+import { APP_URL } from '~/lib/env'
 
 type AppLinkProps = {
   children: React.ReactNode
@@ -28,13 +31,17 @@ function AppLink({ children, href }: AppLinkProps) {
 }
 
 type DashboardNavProps = {
-  user: UserSessionProps
+  user: {
+    id?: string
+  } & UserSessionProps
 }
 
 export default function DashboardNav({ user }: DashboardNavProps) {
   const [isOpenMainMenu, setOpenMainMenu] = useState(false)
 
-  const handleSignOut = () => {}
+  const handleSignOut = () => {
+    signOut({ callbackUrl: APP_URL })
+  }
 
   return (
     <nav className="bg-gray-800">
@@ -90,7 +97,7 @@ export default function DashboardNav({ user }: DashboardNavProps) {
                   </Link>
                   <a
                     onClick={handleSignOut}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    className="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     role="menuitem"
                   >
                     Logout
@@ -102,9 +109,7 @@ export default function DashboardNav({ user }: DashboardNavProps) {
 
           <div className="-mr-2 flex md:hidden">
             <button
-              onClick={() => {
-                setOpenMainMenu(!isOpenMainMenu)
-              }}
+              onClick={() => setOpenMainMenu((prev) => !prev)}
               type="button"
               className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
               aria-controls="mobile-menu"
@@ -169,7 +174,7 @@ export default function DashboardNav({ user }: DashboardNavProps) {
             </Link>
             <a
               onClick={handleSignOut}
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+              className="cursor-pointer block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
             >
               Logout
             </a>
