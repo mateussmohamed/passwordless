@@ -7,33 +7,26 @@
 [![Contributors](https://img.shields.io/github/contributors/mateussmohamed/passwordless?color=D54F44&style=flat-square)](https://github.com/mateussmohamed/passwordless/graphs/contributors)
 
 
-# :pushpin: Table of Contents
+## :pushpin: Table of Contents
 
-- [passwordless](#passwordless)
-- [:pushpin: Table of Contents](#pushpin-table-of-contents)
 - [:question: Why?](#question-why)
-    - [TODO;](#todo)
 - [:rocket: Features](#rocket-features)
-    - [TODO;](#todo-1)
 - [:construction_worker: Installation](#construction_worker-installation)
-- [:runner: Getting Started](#runner-getting-started)
-    - [TODO;](#todo-2)
 - [:postbox: Faq](#postbox-faq)
-    - [TODO;](#todo-3)
 - [:bug: Issues](#bug-issues)
 - [:tada: Contributing](#tada-contributing)
 - [:closed_book: License](#closed_book-license)
 
 
-# :question: Why?
+## :question: Why?
 
-### TODO;
+An example using the passwordless approach and another type of the authentication flow
 
-# :rocket: Features
+## :rocket: Features
+- Example Login with Github
 
-### TODO;
 
-# :construction_worker: Installation
+## :construction_worker: Installation
 
 **You need to install [Node.js](https://nodejs.org/en/download/) and [pnpm](https://pnpm.io) first, then in order to clone the project via HTTPS, run this command:**
 
@@ -57,25 +50,26 @@ Create your environment variables based on the examples of ```.env.example```
 
 After copying the examples, make sure to fill the variables with new values.
 
-# :runner: Getting Started
+## :postbox: Faq
 
-### TODO;
+**Question**: What are the technologies used in this project?
 
-# :postbox: Faq
+**Answer**: 
+- Next.js 13 with app directory
+- Tailwind css
+- Prisma
 
-### TODO;
-
-# :bug: Issues
+## :bug: Issues
 
 Feel free to **file a new issue** with a respective title and description on the the [passwordless](https://github.com/mateussmohamed/passwordless/issues) repository. If you already found a solution to your problem, **i would love to review your pull request**! Have a look at our [contribution guidelines](https://github.com/mateussmohamed/passwordless/blob/master/.github/contributing.md) to find out about the coding standards.
 
-# :tada: Contributing
+## :tada: Contributing
 
 Check out the [contributing](https://github.com/mateussmohamed/passwordless/blob/master/.github/contributing.md) page to see the best places to file issues, start discussions and begin contributing.
 
-# :closed_book: License
+## :closed_book: License
 
-Released in 2020.
+Released in 2021.
 This project is under the [MIT license](https://github.com/mateussmohamed/passwordless/blob/master/LICENSE).
 
 Made with love by [Mateus Santana](https://github.com/mateussmohamed) 🖤🚀
