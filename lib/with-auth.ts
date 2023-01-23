@@ -1,5 +1,4 @@
 import { GetServerSidePropsContext } from 'next'
-
 import { getSession } from 'next-auth/react'
 
 export default function withAuth() {
@@ -10,7 +9,7 @@ export default function withAuth() {
       return {
         props: {},
         redirect: {
-          destination: '/auth/signin',
+          destination: '/auth/login',
           permanent: false
         }
       }

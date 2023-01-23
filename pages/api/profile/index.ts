@@ -1,7 +1,6 @@
-import { NextApiRequest, NextApiResponse } from 'next'
 import Joi from 'joi'
-
 import { prisma } from 'lib/prisma'
+import { NextApiRequest, NextApiResponse } from 'next'
 
 const schema = Joi.object({
   id: Joi.string().required(),

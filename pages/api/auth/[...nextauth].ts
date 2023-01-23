@@ -1,11 +1,8 @@
-import NextAuth, { NextAuthOptions, Session, User } from 'next-auth'
-
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
-
+import { prisma } from 'lib/prisma'
+import NextAuth, { NextAuthOptions } from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
-
-import { prisma } from 'lib/prisma'
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -20,7 +17,7 @@ export const authOptions: NextAuthOptions = {
   ],
   adapter: PrismaAdapter(prisma),
   pages: {
-    signIn: '/auth/signin',
+    signIn: '/auth/login',
     error: '/auth/error',
     verifyRequest: '/auth/verify-request'
   },
@@ -28,8 +25,8 @@ export const authOptions: NextAuthOptions = {
     colorScheme: 'light'
   },
   callbacks: {
-    async session({ session, token, user }) {
-      return { expires: session.expires, token, user }
+    async session({ session, user }) {
+      return { expires: session.expires, user }
     }
   }
 }

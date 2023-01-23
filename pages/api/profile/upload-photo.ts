@@ -1,9 +1,8 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-import multer from 'multer'
-import runMiddleware from 'utils/run-middleware'
-import s3Upload from 'utils/aws/s3-upload'
-
 import { prisma } from 'lib/prisma'
+import multer from 'multer'
+import { NextApiRequest, NextApiResponse } from 'next'
+import s3Upload from 'utils/aws/s3-upload'
+import runMiddleware from 'utils/run-middleware'
 
 const { S3_BUCKET_URL } = process.env
 
