@@ -1,14 +1,13 @@
 'use client'
 
-import { useState } from 'react'
-import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { signOut } from 'next-auth/react'
-
-import UserAvatar from '~/ui/user-avatar'
+import { useState } from 'react'
 
 import { APP_URL } from '~/lib/env'
+import UserAvatar from '~/ui/user-avatar'
 
 type AppLinkProps = {
   children: React.ReactNode
@@ -45,11 +44,17 @@ export default function DashboardNav({ user }: DashboardNavProps) {
 
   return (
     <nav className="bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <Image className="mx-auto" src="/logo.svg" alt="Logo" width="48" height="48" />
+              <Image
+                className="mx-auto"
+                src="/logo.svg"
+                alt="Logo"
+                width="48"
+                height="48"
+              />
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
@@ -64,13 +69,15 @@ export default function DashboardNav({ user }: DashboardNavProps) {
 
           <div className="hidden md:block">
             <div className="ml-4 flex items-center md:ml-6">
-              <div className="text-base font-normal leading-none text-white">{user.name}</div>
-              <div className="ml-3 relative">
+              <div className="text-base font-normal leading-none text-white">
+                {user.name}
+              </div>
+              <div className="relative ml-3">
                 <div>
                   <button
                     onClick={() => setOpenMainMenu(!isOpenMainMenu)}
                     type="button"
-                    className="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                    className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                     id="user-menu"
                     aria-expanded="false"
                     aria-haspopup="true"
@@ -81,9 +88,11 @@ export default function DashboardNav({ user }: DashboardNavProps) {
                 </div>
 
                 <div
-                  className={`transition transform ease-in-out duration-100 ${
-                    !isOpenMainMenu ? 'opacity-0 scale-95' : 'ease-in opacity-100 scale-100'
-                  } origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none`}
+                  className={`transform transition duration-100 ease-in-out ${
+                    !isOpenMainMenu
+                      ? 'scale-95 opacity-0'
+                      : 'scale-100 opacity-100 ease-in'
+                  } absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="user-menu"
@@ -97,7 +106,7 @@ export default function DashboardNav({ user }: DashboardNavProps) {
                   </Link>
                   <a
                     onClick={handleSignOut}
-                    className="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    className="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     role="menuitem"
                   >
                     Logout
@@ -111,7 +120,7 @@ export default function DashboardNav({ user }: DashboardNavProps) {
             <button
               onClick={() => setOpenMainMenu((prev) => !prev)}
               type="button"
-              className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
@@ -124,7 +133,12 @@ export default function DashboardNav({ user }: DashboardNavProps) {
                 stroke="currentColor"
                 aria-hidden="true"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               </svg>
               <svg
                 className="hidden h-6 w-6"
@@ -134,7 +148,12 @@ export default function DashboardNav({ user }: DashboardNavProps) {
                 stroke="currentColor"
                 aria-hidden="true"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>
@@ -142,7 +161,7 @@ export default function DashboardNav({ user }: DashboardNavProps) {
       </div>
 
       <div className="md:hidden" id="mobile-menu">
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
           <AppLink href="/dashboard">Dashboard</AppLink>
           <AppLink href="/dashboard/team">Team</AppLink>
           <AppLink href="/dashboard/projects">Projects</AppLink>
@@ -150,31 +169,37 @@ export default function DashboardNav({ user }: DashboardNavProps) {
           <AppLink href="/dashboard/reports">Reports</AppLink>
         </div>
 
-        <div className="pt-4 pb-3 border-t border-gray-700">
+        <div className="border-t border-gray-700 pt-4 pb-3">
           <div className="flex items-center px-5">
             <div className="flex-shrink-0">
               <UserAvatar src={user.image} />
             </div>
             <div className="ml-3">
-              <div className="text-base font-normal leading-none text-white">{user.name}</div>
-              <div className="text-sm font-normal leading-none text-gray-400">{user.email}</div>
+              <div className="text-base font-normal leading-none text-white">
+                {user.name}
+              </div>
+              <div className="text-sm font-normal leading-none text-gray-400">
+                {user.email}
+              </div>
             </div>
           </div>
 
           <div
-            className={`mt-3 px-2 space-y-1 transition transform ease-in-out duration-100 ${
-              !isOpenMainMenu ? 'hidden opacity-0 scale-95' : 'block ease-in opacity-100 scale-100'
+            className={`mt-3 transform space-y-1 px-2 transition duration-100 ease-in-out ${
+              !isOpenMainMenu
+                ? 'hidden scale-95 opacity-0'
+                : 'block scale-100 opacity-100 ease-in'
             }`}
           >
             <Link
               href="/dashboard/profile"
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
             >
               Profile
             </Link>
             <a
               onClick={handleSignOut}
-              className="cursor-pointer block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+              className="block cursor-pointer rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
             >
               Logout
             </a>
