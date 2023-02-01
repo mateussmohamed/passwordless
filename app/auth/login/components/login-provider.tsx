@@ -2,14 +2,10 @@
 
 import { signIn } from 'next-auth/react'
 
-import { APP_URL } from '~/lib/env'
-
-const callbackUrl = `${APP_URL}/dashboard`
-
 export function LoginProvider() {
   const onProviderLogin = async (provider: string) => {
     try {
-      await signIn(provider, { callbackUrl })
+      await signIn(provider, { callbackUrl: `/dashboard` })
     } catch (error) {
       console.error('onProviderLogin ~ error', error)
     }

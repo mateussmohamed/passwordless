@@ -27,7 +27,7 @@ export function LoginEmail({ csrfToken }: LoginProps) {
   const onLoginEmail = async ({ email }: { email: string }) => {
     try {
       setLoading(true)
-      // await signIn('email', { email, callbackUrl })
+      // await signIn('email', { email, callbackUrl: '/dashboard' })
     } catch (error) {
       console.error('onLoginEmail ~ error', error)
     } finally {
