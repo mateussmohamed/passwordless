@@ -10,8 +10,7 @@ export const IS_DEVELOPMENT =
 
 export const IS_PREVIEW_OR_DEVELOPMENT = IS_PREVIEW || IS_DEVELOPMENT
 
-const APP_URL = IS_PREVIEW_OR_DEVELOPMENT
-  ? process.env.VERCEL_URL
-  : process.env.NEXT_PUBLIC_APP_URL
+const APP_URL = process.env.NEXT_PUBLIC_VERCEL_URL
+console.log(`🚀 ~ APP_URL`, APP_URL)
 
 export { APP_URL }
