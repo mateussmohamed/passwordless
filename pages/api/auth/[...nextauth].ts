@@ -4,6 +4,8 @@ import NextAuth, { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import GithubProvider from 'next-auth/providers/github'
 
+import { IS_PREVIEW } from '~/lib/env'
+
 function previewProvider() {
   return [
     CredentialsProvider({
@@ -31,9 +33,7 @@ function readyProvider() {
 }
 
 function defineProviders() {
-  return process.env.APP_PREVIEW === 'preview'
-    ? previewProvider()
-    : readyProvider()
+  return IS_PREVIEW ? previewProvider() : readyProvider()
 }
 
 export const authOptions: NextAuthOptions = {

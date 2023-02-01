@@ -2,6 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getCsrfToken } from 'next-auth/react'
 
+import { IS_PREVIEW } from '~/lib/env'
+
 import { LoginEmail } from './components/login-email'
 import { LoginPreview } from './components/login-preview'
 import { LoginProvider } from './components/login-provider'
@@ -22,14 +24,11 @@ export default async function AuthLoginPage() {
           />
         </h1>
 
-        {process.env.NEXT_PUBLIC_APP_PREVIEW ? (
-          <LoginPreview />
-        ) : (
-          <>
-            <LoginProvider />
-            <LoginEmail csrfToken={csrfToken} />
-          </>
-        )}
+        <LoginProvider />
+
+        <LoginEmail csrfToken={csrfToken} />
+
+        {IS_PREVIEW ? <LoginPreview /> : null}
 
         <div className="pt-5">
           <div className="grid grid-cols-1 gap-1">
