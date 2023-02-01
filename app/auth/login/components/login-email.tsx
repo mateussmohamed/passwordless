@@ -36,7 +36,7 @@ export function LoginEmail({ csrfToken }: LoginProps) {
   }
 
   return (
-    <div className="p-5">
+    <div>
       <div className="relative flex justify-center p-4">
         <span className="relative z-10 bg-white p-2 text-center text-sm text-gray-600">
           or continue with email
