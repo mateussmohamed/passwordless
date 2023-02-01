@@ -9,11 +9,11 @@ function previewProvider() {
     CredentialsProvider({
       name: 'credentials',
       credentials: {
-        username: { label: 'Username', type: 'text', placeholder: 'Mateus' }
+        username: { label: 'Username', type: 'text', placeholder: 'Username' }
       },
       async authorize() {
         const user = await prisma.user.findFirst({
-          where: { email: 'mateus@passwordless.io' }
+          where: { email: process.env.APP_PREVIEW_EMAIL }
         })
         return user ?? null
       }
