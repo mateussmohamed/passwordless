@@ -1,4 +1,4 @@
-import { unstable_getServerSession } from 'next-auth/next'
+import { getServerSession } from 'next-auth/next'
 import { authOptions } from 'pages/api/auth/[...nextauth]'
 
 import DashboardNav from './components/dashboard-nav'
@@ -10,7 +10,7 @@ interface DashboardLayoutProps {
 export default async function DashboardLayout({
   children
 }: DashboardLayoutProps) {
-  const session = await unstable_getServerSession(authOptions)
+  const session = await getServerSession(authOptions)
 
   return (
     <div className="relative overflow-hidden bg-white">

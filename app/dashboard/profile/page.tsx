@@ -1,11 +1,11 @@
-import { unstable_getServerSession } from 'next-auth/next'
+import { getServerSession } from 'next-auth/next'
 import { authOptions } from 'pages/api/auth/[...nextauth]'
 
 import ProfileForm from './components/profile-fom'
 // import ProfilePicture from './components/profile-picture'
 
 export default async function ProfilePage() {
-  const session = (await unstable_getServerSession(authOptions)) as SessionProps
+  const session = (await getServerSession(authOptions)) as SessionProps
 
   const user = {
     id: String(session?.user?.id),
