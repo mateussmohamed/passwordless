@@ -3,7 +3,7 @@ import { prisma } from 'lib/prisma'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 const schema = Joi.object({
-  id: Joi.string().required(),
+  email: Joi.string().required(),
   name: Joi.string().min(2).max(50).required()
 })
 
@@ -20,9 +20,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     }
 
     const updateUser = await prisma.user.update({
-      where: { id: body.id },
+      where: { email: body.email },
       data: { name: body.name }
     })
+    console.log(`🚀 ~ file: index.ts:26 ~ handler ~ updateUser:`, updateUser)
 
     res.status(200).json(updateUser)
   } catch (error) {

@@ -5,7 +5,7 @@ import { signIn } from 'next-auth/react'
 export function LoginPreview() {
   const onProviderLogin = async (provider: string) => {
     try {
-      await signIn(provider, { callbackUrl: `/dashboard` })
+      await signIn(provider, { callbackUrl: `/app/dashboard` })
     } catch (error) {
       console.error('onProviderLogin ~ error', error)
     }

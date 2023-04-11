@@ -16,10 +16,12 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
+      "~/app/*": ["app/*"],
       "~/lib/*": ["lib/*"],
       "~/styles/*": ["styles/*"],
       "~/ui/*": ["ui/*"],
-      "~/utils/*": ["utils/*"]
+      "~/utils/*": ["utils/*"],
+      "~/types/*": ["types/*"]
     },
     "plugins": [
       {
@@ -30,7 +32,7 @@
   "include": [
     "process.d.ts",
     "next-env.d.ts",
-    "index.d.ts",
+    "types/index.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"

@@ -8,7 +8,7 @@ export default function AuthErrorPage() {
 
   return (
     <div className="fixed inset-0 z-10 overflow-y-auto">
-      <div className="flex min-h-screen items-end justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+      <div className="flex min-h-screen items-end justify-center px-4 pb-20 pt-4 text-center sm:block sm:p-0">
         <div className="fixed inset-0 transition-opacity" aria-hidden="true">
           <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
         </div>
@@ -26,7 +26,7 @@ export default function AuthErrorPage() {
           aria-modal="true"
           aria-labelledby="modal-headline"
         >
-          <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
             <div className="sm:flex sm:items-start">
               <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
                 <svg
@@ -45,7 +45,7 @@ export default function AuthErrorPage() {
                   />
                 </svg>
               </div>
-              <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                 <h3
                   className="text-lg font-bold leading-6 text-gray-900"
                   id="modal-headline"
@@ -55,7 +55,7 @@ export default function AuthErrorPage() {
                 <div className="mt-2">
                   <p className="text-sm text-gray-500">
                     <span className="font-medium text-black">
-                      {searchParams.get('error')}:{' '}
+                      {searchParams?.get('error')}:{' '}
                     </span>
                   </p>
                 </div>
@@ -65,7 +65,7 @@ export default function AuthErrorPage() {
           <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
             <Link
               href="/auth/login"
-              className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+              className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:ml-3 sm:mt-0 sm:w-auto sm:text-sm"
             >
               Cancel
             </Link>

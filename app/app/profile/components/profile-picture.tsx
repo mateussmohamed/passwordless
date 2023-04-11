@@ -4,9 +4,7 @@ import { SyntheticEvent, useState } from 'react'
 import UserAvatar from 'ui/user-avatar'
 
 type ProfilePictureProps = {
-  user: {
-    id: string
-  } & UserSessionProps
+  user: UserSessionProps
 }
 
 function ProfilePicture({ user }: ProfilePictureProps) {
@@ -54,13 +52,13 @@ function ProfilePicture({ user }: ProfilePictureProps) {
         <div className="shadow sm:overflow-hidden sm:rounded-md">
           <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              {/* <label className="block text-sm font-medium text-gray-700">
                 Photo
-              </label>
-              <div className="mt-1 flex items-center">
-                <UserAvatar src={image} loading={loading} size="large" />
+              </label> */}
+              {/* <div className="mt-1 flex items-center"> */}
+              <UserAvatar src={image} size="large" />
 
-                <div className="relative ">
+              {/* <div className="relative ">
                   <label
                     htmlFor="image"
                     role="button"
@@ -76,8 +74,8 @@ function ProfilePicture({ user }: ProfilePictureProps) {
                     accept="image/jpeg, image/png"
                     className="pin-r pin-t absolute block cursor-pointer opacity-0"
                   />
-                </div>
-              </div>
+                </div> */}
+              {/* </div> */}
             </div>
           </div>
         </div>
