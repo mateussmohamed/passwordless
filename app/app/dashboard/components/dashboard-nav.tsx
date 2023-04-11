@@ -48,21 +48,23 @@ export default function DashboardNav({ user }: DashboardNavProps) {
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <Image
-                className="mx-auto"
-                src="/logo.svg"
-                alt="Logo"
-                width="48"
-                height="48"
-              />
+              <Link href="/app/dashboard">
+                <Image
+                  className="mx-auto"
+                  src="/logo.svg"
+                  alt="Logo"
+                  width="48"
+                  height="48"
+                />
+              </Link>
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
-                <AppLink href="/dashboard">Dashboard</AppLink>
-                <AppLink href="/dashboard/team">Team</AppLink>
-                <AppLink href="/dashboard/projects">Projects</AppLink>
-                <AppLink href="/dashboard/calendar">Calendar</AppLink>
-                <AppLink href="/dashboard/reports">Reports</AppLink>
+                <AppLink href="/app/dashboard">Dashboard</AppLink>
+                <AppLink href="/app/team">Team</AppLink>
+                <AppLink href="/app/projects">Projects</AppLink>
+                <AppLink href="/app/calendar">Calendar</AppLink>
+                <AppLink href="/app/reports">Reports</AppLink>
               </div>
             </div>
           </div>
@@ -98,7 +100,7 @@ export default function DashboardNav({ user }: DashboardNavProps) {
                   aria-labelledby="user-menu"
                 >
                   <Link
-                    href="/dashboard/profile"
+                    href="/app/profile"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     role="menuitem"
                   >
@@ -161,15 +163,15 @@ export default function DashboardNav({ user }: DashboardNavProps) {
       </div>
 
       <div className="md:hidden" id="mobile-menu">
-        <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-          <AppLink href="/dashboard">Dashboard</AppLink>
-          <AppLink href="/dashboard/team">Team</AppLink>
-          <AppLink href="/dashboard/projects">Projects</AppLink>
-          <AppLink href="/dashboard/calendar">Calendar</AppLink>
-          <AppLink href="/dashboard/reports">Reports</AppLink>
+        <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
+          <AppLink href="/app/dashboard">Dashboard</AppLink>
+          <AppLink href="/app/team">Team</AppLink>
+          <AppLink href="/app/projects">Projects</AppLink>
+          <AppLink href="/app/calendar">Calendar</AppLink>
+          <AppLink href="/app/reports">Reports</AppLink>
         </div>
 
-        <div className="border-t border-gray-700 pt-4 pb-3">
+        <div className="border-t border-gray-700 pb-3 pt-4">
           <div className="flex items-center px-5">
             <div className="flex-shrink-0">
               <UserAvatar src={user.image} />
@@ -192,7 +194,7 @@ export default function DashboardNav({ user }: DashboardNavProps) {
             }`}
           >
             <Link
-              href="/dashboard/profile"
+              href="/app/profile"
               className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
             >
               Profile

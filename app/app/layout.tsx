@@ -1,16 +1,24 @@
-import { getServerSession } from 'next-auth/next'
-import { authOptions } from 'pages/api/auth/[...nextauth]'
+import type { Metadata } from 'next'
 
-import DashboardNav from './components/dashboard-nav'
+import { getSession } from '~/lib/get-session'
+
+import DashboardNav from './dashboard/components/dashboard-nav'
 
 interface DashboardLayoutProps {
   children: React.ReactNode
 }
 
+export const metadata: Metadata = {
+  title: {
+    default: 'App',
+    template: 'Passwordless | App | %s'
+  }
+}
+
 export default async function DashboardLayout({
   children
 }: DashboardLayoutProps) {
-  const session = await getServerSession(authOptions)
+  const session = await getSession()
 
   return (
     <div className="relative overflow-hidden bg-white">
@@ -23,7 +31,7 @@ export default async function DashboardLayout({
       />
 
       <header className="bg-white shadow">
-        <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
         </div>
       </header>

@@ -4,7 +4,30 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 
-export default function Nav() {
+type NavProps = {
+  hasSession: boolean
+}
+
+type SigninButtonProps = NavProps
+
+const SigninButton = ({ hasSession }: SigninButtonProps) =>
+  hasSession ? (
+    <Link
+      href="/app/dashboard"
+      className="font-medium text-indigo-600 hover:text-indigo-900"
+    >
+      Go to app
+    </Link>
+  ) : (
+    <Link
+      href="/auth/login"
+      className="font-medium text-indigo-600 hover:text-indigo-900"
+    >
+      Signin
+    </Link>
+  )
+
+export default function Nav({ hasSession }: NavProps) {
   const [isOpen, setOpen] = useState(false)
 
   return (
@@ -17,7 +40,7 @@ export default function Nav() {
           >
             <div className="flex flex-shrink-0 flex-grow items-center lg:flex-grow-0">
               <div className="flex w-full items-center justify-between md:w-auto">
-                <a href="#">
+                <Link href="/">
                   <span className="sr-only">Workflow</span>
                   <Image
                     className="mx-auto"
@@ -26,7 +49,7 @@ export default function Nav() {
                     width="48"
                     height="48"
                   />
-                </a>
+                </Link>
                 <div className="-mr-2 flex items-center md:hidden">
                   <button
                     onClick={() => setOpen(!isOpen)}
@@ -55,7 +78,19 @@ export default function Nav() {
               </div>
             </div>
             <div className="hidden md:ml-10 md:block md:space-x-8 md:pr-4">
-              <a
+              <Link
+                href="/pricing"
+                className="font-medium text-gray-500 hover:text-gray-900"
+              >
+                Pricing
+              </Link>
+              <Link
+                href="/about"
+                className="font-medium text-gray-500 hover:text-gray-900"
+              >
+                About
+              </Link>
+              {/* <a
                 href="https://nextjs.org/"
                 target="_blank"
                 className="font-medium text-gray-500 hover:text-gray-900"
@@ -89,14 +124,9 @@ export default function Nav() {
                 rel="noreferrer"
               >
                 Tailwindcss
-              </a>
+              </a> */}
 
-              <Link
-                href="/auth/login"
-                className="font-medium text-indigo-600 hover:text-indigo-500"
-              >
-                Sign in
-              </Link>
+              <SigninButton hasSession={hasSession} />
             </div>
           </nav>
         </div>
@@ -104,10 +134,10 @@ export default function Nav() {
         <div
           className={`${
             !isOpen && 'hidden'
-          } absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden`}
+          } absolute inset-x-0 top-0 origin-top-right transform py-2 transition md:hidden`}
         >
           <div className="overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black ring-opacity-5">
-            <div className="flex items-center justify-between px-5 pt-4">
+            <div className="flex items-center justify-between px-4 pt-4">
               <div>
                 <Image
                   className="mx-auto"
@@ -142,7 +172,7 @@ export default function Nav() {
                 </button>
               </div>
             </div>
-            <div className="space-y-1 px-2 pt-2 pb-3">
+            <div className="space-y-1 px-2 pb-3 pt-2">
               <a
                 href="https://nextjs.org"
                 target="_blank"
@@ -180,12 +210,9 @@ export default function Nav() {
               </a>
             </div>
 
-            <Link
-              href="/auth/login"
-              className="block w-full bg-gray-50 px-5 py-3 text-center font-medium text-indigo-600 hover:bg-gray-100"
-            >
-              Signin
-            </Link>
+            <div className="block rounded-md px-5 pb-2">
+              <SigninButton hasSession={hasSession} />
+            </div>
           </div>
         </div>
       </div>

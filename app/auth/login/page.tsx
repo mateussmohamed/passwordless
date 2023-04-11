@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getCsrfToken } from 'next-auth/react'
@@ -7,6 +8,10 @@ import { IS_PREVIEW } from '~/lib/env'
 import { LoginEmail } from './components/login-email'
 import { LoginPreview } from './components/login-preview'
 import { LoginProvider } from './components/login-provider'
+
+export const metadata: Metadata = {
+  title: 'Login'
+}
 
 export default async function AuthLoginPage() {
   const csrfToken = String(await getCsrfToken())
