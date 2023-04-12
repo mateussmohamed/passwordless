@@ -52,33 +52,3 @@ export function UserAvatar({ src, size = 'small' }: UserAvatarProps) {
     />
   )
 }
-
-// const userAvatarVariants = cva('span', {
-//   variants: {
-//     width: {
-//       small: ['w-[40px]', 'h-[40px]'],
-//       medium: ['w-[64px]', 'h-[64px]'],
-//       large: ['w-[128px]', 'h-[128px]']
-//     },
-//     size: {
-//       small: ['h-10', 'w-10'],
-//       medium: ['h-16', 'w-16'],
-//       large: ['h-32', 'w-32']
-//     }
-//   },
-//   defaultVariants: {
-//     width: 'medium',
-//     size: 'medium'
-//   }
-// })
-
-// export interface ButtonProps
-//   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-//     VariantProps<typeof button> {}
-
-// export const Button: React.FC<ButtonProps> = ({
-//   className,
-//   intent,
-//   size,
-//   ...props
-// }) => <button className={button({ intent, size, className })} {...props} />
