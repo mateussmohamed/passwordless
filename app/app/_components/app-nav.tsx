@@ -1,13 +1,13 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { signOut } from 'next-auth/react'
 import { useState } from 'react'
+import { Logo } from 'ui/logo'
+import { UserAvatar } from 'ui/user-avatar'
 
 import { APP_URL } from '~/lib/env'
-import UserAvatar from '~/ui/user-avatar'
 
 type AppLinkProps = {
   children: React.ReactNode
@@ -29,13 +29,11 @@ function AppLink({ children, href }: AppLinkProps) {
   )
 }
 
-type DashboardNavProps = {
-  user: {
-    id?: string
-  } & UserSessionProps
+type AppNavProps = {
+  user: UserSessionProps
 }
 
-export default function DashboardNav({ user }: DashboardNavProps) {
+export function AppNav({ user }: AppNavProps) {
   const [isOpenMainMenu, setOpenMainMenu] = useState(false)
 
   const handleSignOut = () => {
@@ -48,15 +46,7 @@ export default function DashboardNav({ user }: DashboardNavProps) {
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <Link href="/app/dashboard">
-                <Image
-                  className="mx-auto"
-                  src="/logo.svg"
-                  alt="Logo"
-                  width="48"
-                  height="48"
-                />
-              </Link>
+              <Logo href="/app/dashboard" />
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">

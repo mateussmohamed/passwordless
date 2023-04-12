@@ -1,6 +1,9 @@
 'use client'
 
 import Image from 'next/image'
+import React from 'react'
+
+import { cn } from '~/lib/utils'
 
 type UserAvatarProps = {
   src?: string
@@ -19,11 +22,14 @@ const width = {
   large: { width: 128, height: 128 }
 }
 
-export default function UserAvatar({ src, size = 'small' }: UserAvatarProps) {
+export function UserAvatar({ src, size = 'small' }: UserAvatarProps) {
   if (!src) {
     return (
       <span
-        className={`${sizes[size]} inline-block overflow-hidden rounded-full bg-gray-100`}
+        className={cn(
+          sizes[size],
+          'inline-block overflow-hidden rounded-full bg-gray-100'
+        )}
       >
         <svg
           className="h-full w-full text-gray-300"
@@ -39,9 +45,9 @@ export default function UserAvatar({ src, size = 'small' }: UserAvatarProps) {
   return (
     <Image
       {...width[size]}
-      className={`${sizes[size]} rounded-full`}
+      className={cn(sizes[size], 'rounded-full')}
       src={src}
-      alt=""
+      alt="User profile picture"
       loading="lazy"
     />
   )

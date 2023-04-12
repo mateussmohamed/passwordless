@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
+import { UserAvatar } from 'ui/user-avatar'
 
 export const metadata: Metadata = {
   title: 'Team'
@@ -48,13 +48,7 @@ export default function TeamPage() {
                   <td className="whitespace-nowrap px-6 py-4">
                     <div className="flex items-center">
                       <div className="h-10 w-10 flex-shrink-0">
-                        <Image
-                          className="rounded-full"
-                          alt="logo"
-                          src="/logo.svg"
-                          width="248"
-                          height="248"
-                        />
+                        <UserAvatar />
                       </div>
                       <div className="ml-4">
                         <div className="text-sm font-medium text-gray-900">

@@ -1,37 +1,31 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
-import { getCsrfToken } from 'next-auth/react'
+// import { getCsrfToken } from 'next-auth/react'
+import { Logo } from 'ui/logo'
 
 import { IS_PREVIEW } from '~/lib/env'
 
-import { LoginEmail } from './components/login-email'
-import { LoginPreview } from './components/login-preview'
-import { LoginProvider } from './components/login-provider'
+import { LoginEmail } from './_components/login-email'
+import { LoginPreview } from './_components/login-preview'
+import { LoginProvider } from './_components/login-provider'
 
 export const metadata: Metadata = {
   title: 'Login'
 }
 
 export default async function AuthLoginPage() {
-  const csrfToken = String(await getCsrfToken())
+  // const csrfToken = String(await getCsrfToken())
 
   return (
     <div className="flex min-h-screen flex-col justify-center bg-gray-100 sm:py-12">
       <div className="xs:p-0 mx-auto rounded-md  bg-white p-10 shadow md:w-full md:max-w-md">
         <h1 className="mb-5 text-center text-2xl font-bold">
-          <Image
-            className="mx-auto"
-            src="/logo.svg"
-            alt="Logo"
-            width="128"
-            height="128"
-          />
+          <Logo width={128} height={128} href="/app/dashboard" />
         </h1>
 
         <LoginProvider />
 
-        <LoginEmail csrfToken={csrfToken} />
+        {/* <LoginEmail csrfToken={csrfToken} /> */}
 
         {IS_PREVIEW ? <LoginPreview /> : null}
 

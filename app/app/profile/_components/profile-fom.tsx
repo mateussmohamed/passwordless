@@ -8,7 +8,7 @@ type ProfileFormProps = {
   user: UserSessionProps
 }
 
-function ProfileForm({ user }: ProfileFormProps) {
+export function ProfileForm({ user }: ProfileFormProps) {
   const router = useRouter()
   const [isLoading, toggleLoading] = useState(false)
 
@@ -152,5 +152,3 @@ function ProfileForm({ user }: ProfileFormProps) {
     </>
   )
 }
-
-export default ProfileForm
