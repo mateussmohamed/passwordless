@@ -1,7 +1,7 @@
-import { Logo } from 'ui/logo'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { getCsrfToken } from 'next-auth/react'
+// import { getCsrfToken } from 'next-auth/react'
+import { Logo } from 'ui/logo'
 
 import { IS_PREVIEW } from '~/lib/env'
 

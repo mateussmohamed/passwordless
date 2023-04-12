@@ -1,11 +1,11 @@
 'use client'
 
-import { Logo } from 'ui/logo'
-import { UserAvatar } from 'ui/user-avatar'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { signOut } from 'next-auth/react'
 import { useState } from 'react'
+import { Logo } from 'ui/logo'
+import { UserAvatar } from 'ui/user-avatar'
 
 import { APP_URL } from '~/lib/env'
 

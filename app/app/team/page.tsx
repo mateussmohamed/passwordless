@@ -1,5 +1,5 @@
-import { UserAvatar } from 'ui/user-avatar'
 import type { Metadata } from 'next'
+import { UserAvatar } from 'ui/user-avatar'
 
 export const metadata: Metadata = {
   title: 'Team'

@@ -1,10 +1,10 @@
 'use client'
 
 import { cva } from 'class-variance-authority'
-import { Logo } from 'ui/logo'
 import { LogIn, Menu, XIcon } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
+import { Logo } from 'ui/logo'
 
 import { cn } from '~/lib/utils'
 
