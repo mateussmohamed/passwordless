@@ -19,7 +19,7 @@
       "~/app/*": ["app/*"],
       "~/lib/*": ["lib/*"],
       "~/styles/*": ["styles/*"],
-      "~/ui/*": ["ui/*"],
+      "~/ui/*": ["ui/ui/*"],
       "~/utils/*": ["utils/*"],
       "~/types/*": ["types/*"]
     },

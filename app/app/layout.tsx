@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 
-import { getSession } from '~/lib/get-session'
+import { getCurrentUser } from '~/lib/get-session'
 
-import DashboardNav from './dashboard/components/dashboard-nav'
+import { AppNav } from './_components/app-nav'
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -18,17 +18,11 @@ export const metadata: Metadata = {
 export default async function DashboardLayout({
   children
 }: DashboardLayoutProps) {
-  const session = await getSession()
+  const user = await getCurrentUser()
 
   return (
     <div className="relative overflow-hidden bg-white">
-      <DashboardNav
-        user={{
-          email: String(session?.user?.email),
-          name: String(session?.user?.name),
-          image: String(session?.user?.image)
-        }}
-      />
+      <AppNav user={user} />
 
       <header className="bg-white shadow">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
