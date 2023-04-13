@@ -28,7 +28,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
   const onSubmit = async ({ name }: { name: string }) => {
     try {
       toggleLoading(true)
-      const response = await fetch('/api/profile', {
+      const response = await fetch('/api/user/profile', {
         method: 'POST',
         headers: {
           'Content-type': 'application/json'

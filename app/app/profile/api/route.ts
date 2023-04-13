@@ -7,10 +7,7 @@ const schema = Joi.object({
   name: Joi.string().min(2).max(50).required()
 })
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { body } = req
 
