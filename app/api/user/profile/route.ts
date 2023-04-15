@@ -1,29 +1,26 @@
-import Joi from 'joi'
 import { prisma } from 'lib/prisma'
 import { NextResponse } from 'next/server'
+import * as z from 'zod'
 
-const schema = Joi.object({
-  email: Joi.string().required(),
-  name: Joi.string().min(2).max(50).required()
-})
+import { profileSchema } from '~/lib/schemas/user'
 
 export async function POST(request: Request) {
+  const body = await request.json()
+
   try {
-    const body = await request.json()
-
-    const { error } = await schema.validateAsync(body)
-
-    if (error) {
-      return NextResponse.json({ message: error }, { status: 400 })
-    }
+    const payload = profileSchema.parse(body)
 
     const updateUser = await prisma.user.update({
-      where: { email: body.email },
-      data: { name: body.name }
+      where: { email: payload.email },
+      data: { name: payload.name }
     })
 
     return NextResponse.json(updateUser, { status: 200 })
   } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json(error.issues, { status: 403 })
+    }
+
     if (error instanceof Error) {
       return NextResponse.json(
         { error: true, message: error?.message },

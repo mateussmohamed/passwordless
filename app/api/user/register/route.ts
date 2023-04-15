@@ -1,10 +1,9 @@
 import { Prisma } from '@prisma/client'
 import { prisma } from 'lib/prisma'
-// import type { NextApiRequest, NextApiResponse } from 'next'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
-import { registerSchema } from '~/lib/schemas/register'
+import { registerSchema } from '~/lib/schemas/user'
 
 import { hashPassword } from './password.service'
 
@@ -26,7 +25,7 @@ export async function POST(request: Request) {
     return NextResponse.json('', { status: 201 })
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json(error.issues, { status: 422 })
+      return NextResponse.json(error.issues, { status: 403 })
     }
 
     if (
@@ -34,10 +33,15 @@ export async function POST(request: Request) {
       error.code === 'P2002'
     ) {
       return NextResponse.json(`Email ${body.email} already used.`, {
-        status: 422
+        status: 409
       })
     } else {
-      return NextResponse.json(null, { status: 422 })
+      return NextResponse.json(
+        `This just happened: ${(error as Error).message}`,
+        {
+          status: 500
+        }
+      )
     }
   }
 }
