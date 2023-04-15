@@ -33,7 +33,7 @@ export function LandingHero() {
               <HeroLink href="https://next.js.org/">Next.js</HeroLink>,{' '}
               <HeroLink href="https://tailwindcss.com">tailwindcss</HeroLink>,{' '}
               <HeroLink href="https://www.prisma.io">Prisma</HeroLink>,{' '}
-              <HeroLink href="https://joi.dev">Joi</HeroLink>,{' '}
+              <HeroLink href="https://zod.dev">Zod</HeroLink>,{' '}
               <HeroLink href="https://supabase.com">Supabase</HeroLink>.
             </p>
             <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">

@@ -5,9 +5,12 @@ import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import GithubProvider from 'next-auth/providers/github'
 
+import { validatePassword } from '~/app/api/user/register/password.service'
 import { APP_PREVIEW_EMAIL, IS_PREVIEW } from '~/lib/env'
 
-function previewProvider() {
+import { exclude } from './utils'
+
+function previewProviders() {
   return [
     CredentialsProvider({
       name: 'credentials',
@@ -24,8 +27,45 @@ function previewProvider() {
   ]
 }
 
-function readyProvider() {
+function productionProviders() {
   return [
+    CredentialsProvider({
+      name: 'credentials',
+      credentials: {
+        email: { label: 'E-mail', type: 'text', placeholder: 'E-mail' },
+        password: {
+          label: 'Password',
+          type: 'password',
+          placeholder: 'Password'
+        }
+      },
+      async authorize(credentials) {
+        const { email, password } = credentials as {
+          email: string
+          password: string
+        }
+
+        const user = await prisma.user.findUnique({
+          where: { email }
+        })
+
+        if (!user) {
+          throw new Error('No user Found with Email Please Sign Up...!')
+        }
+
+        if (user && user.password) {
+          const checkPassword = await validatePassword(password, user.password)
+
+          if (!checkPassword || user.email !== email) {
+            throw new Error("Username or Password doesn't match")
+          }
+
+          return exclude(user, ['password'])
+        }
+
+        return null
+      }
+    }),
     GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET
@@ -34,7 +74,7 @@ function readyProvider() {
 }
 
 function defineProviders() {
-  return IS_PREVIEW ? previewProvider() : readyProvider()
+  return IS_PREVIEW ? previewProviders() : productionProviders()
 }
 
 export const authOptions: NextAuthOptions = {
@@ -52,13 +92,6 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt'
   },
   callbacks: {
-    // async redirect({ url, baseUrl }) {
-    //   // Allows relative callback URLs
-    //   if (url.startsWith('/')) return `${baseUrl}${url}`
-    //   // Allows callback URLs on the same origin
-    //   else if (new URL(url).origin === baseUrl) return url
-    //   return baseUrl
-    // },
     async session({ token, session }) {
       if (token) {
         session!.user!.name = token.name
@@ -70,15 +103,15 @@ export const authOptions: NextAuthOptions = {
     },
 
     async jwt({ token, user }) {
-      const dbUser = await prisma.user.findFirst({
+      const dbUser = await prisma.user.findUnique({
         where: {
-          email: token.email
+          email: String(token.email || user.email)
         }
       })
 
       if (!dbUser) {
         if (user) {
-          token.id = user?.id
+          token.id = user.id
         }
         return token
       }
