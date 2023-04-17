@@ -6,7 +6,6 @@
 [![Forks](https://img.shields.io/github/forks/mateussmohamed/passwordless?color=%23D54F44&style=flat-square)](https://github.com/mateussmohamed/passwordless/network/members)
 [![Contributors](https://img.shields.io/github/contributors/mateussmohamed/passwordless?color=D54F44&style=flat-square)](https://github.com/mateussmohamed/passwordless/graphs/contributors)
 
-
 ## :pushpin: Table of Contents
 
 - [:question: Why?](#question-why)
@@ -17,36 +16,50 @@
 - [:tada: Contributing](#tada-contributing)
 - [:closed_book: License](#closed_book-license)
 
-
 ## :question: Why?
 
-An example using the passwordless approach and another type of the authentication flow
+An example using the passwordless approach with Next-Auth and Next.js to explore another type of the authentication flow
 
 ## :rocket: Features
-- Example Login with Github
 
+- Marketing Pages
+  - Home
+  - About
+  - Pricing
+- Auth Pages
+  - Login with Github
+  - Login with Credentials(email, password)
+  - Register Page
+- App Pages
+  - Dashboard
+  - Team
+  - Projects
+  - Calendar
+  - Reports
+  - Profile Page
+    - Update name
 
 ## :construction_worker: Installation
 
 **You need to install [Node.js](https://nodejs.org/en/download/) and [pnpm](https://pnpm.io) first, then in order to clone the project via HTTPS, run this command:**
 
-```git clone https://github.com/mateussmohamed/passwordless.git```
+`git clone https://github.com/mateussmohamed/passwordless.git`
 
 SSH URLs provide access to a Git repository via SSH, a secure protocol. If you have a SSH key registered in your Github account, clone the project using this command:
 
-```git clone git@github.com:mateussmohamed/passwordless.git```
+`git clone git@github.com:mateussmohamed/passwordless.git`
 
 **Install dependencies**
 
-```npm install```
+`npm install`
 
 or
 
-```pnpm install```
+`pnpm install`
 
-Create your environment variables based on the examples of ```.env.example```
+Create your environment variables based on the examples of `.env.example`
 
-```cp .env.example .env```
+`cp .env.example .env`
 
 After copying the examples, make sure to fill the variables with new values.
 
@@ -54,10 +67,15 @@ After copying the examples, make sure to fill the variables with new values.
 
 **Question**: What are the technologies used in this project?
 
-**Answer**: 
-- Next.js 13 with app directory
-- Tailwind css
-- Prisma
+**Answer**:
+
+- [Next.js](https://next.js.org) with app directory and route handlers
+- [NextAuth.js](https://next-auth.js.org)
+- [tailwindcss](https://tailwindcss.com)
+- [react-hook-form](https://react-hook-form.com/)
+- [Prisma](https://www.prisma.io)
+- [Zod](https://zod.dev)
+- [Supabase](https://supabase.com)
 
 ## :bug: Issues
 
