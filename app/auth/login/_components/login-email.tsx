@@ -50,6 +50,10 @@ export function LoginEmail({ csrfToken }: LoginProps) {
       if (!res?.error && res?.ok && res.status === 200) {
         router.push('/app/dashboard')
       }
+
+      if (res?.error && res?.ok) {
+        toast.error(res.error)
+      }
     } catch (error) {
       toast.error((error as Error).message)
     } finally {

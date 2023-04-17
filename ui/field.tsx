@@ -1,6 +1,4 @@
-import * as React from 'react'
-
-import { cn } from '~/lib/utils'
+import { forwardRef } from 'react'
 
 import { Input } from './input'
 
@@ -10,7 +8,7 @@ export interface FieldProps
   error?: string
 }
 
-const Field = React.forwardRef<HTMLInputElement, FieldProps>(
+const Field = forwardRef<HTMLInputElement, FieldProps>(
   ({ className, error, label, ...props }, ref) => {
     return (
       <div className="col-span-6 sm:col-span-3">
