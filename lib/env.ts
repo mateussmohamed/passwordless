@@ -13,6 +13,6 @@ export const APP_PREVIEW_EMAIL =
 
 export const IS_PREVIEW_OR_DEVELOPMENT = IS_PREVIEW || IS_DEVELOPMENT
 
-const APP_URL = process.env.NEXT_PUBLIC_VERCEL_URL
+const APP_URL = process.env.VERCEL_URL || process.env.NEXT_PUBLIC_VERCEL_URL
 
 export { APP_URL }

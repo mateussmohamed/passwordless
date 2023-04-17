@@ -9,7 +9,7 @@ import { Button } from '~/ui/button'
 export function LoginProviders() {
   const onProviderLogin = async (provider: string, redirect = true) => {
     try {
-      await signIn(provider, { callbackUrl: `/app/dashboard`, redirect })
+      await signIn(provider, { callbackUrl: '/app/dashboard', redirect })
     } catch (error) {
       toast.error((error as Error).message)
     }
