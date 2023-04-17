@@ -1,17 +1,17 @@
 import { z } from 'zod'
 
+const emailSchemaa = z.string().min(1, { message: 'Email is required' }).email({
+  message: 'Must be a valid email'
+})
+
 export const profileSchema = z.object({
   name: z.string({ required_error: 'Name is required' }).min(3).max(32),
-  email: z.string().min(1, { message: 'Email is required' }).email({
-    message: 'Must be a valid email'
-  })
+  email: emailSchemaa
 })
 
 export const loginSchema = z.object({
-  email: z.string().min(1, { message: 'Email is required' }).email({
-    message: 'Must be a valid email'
-  }),
-  password: z.string({ required_error: 'Password is required' })
+  email: emailSchemaa,
+  password: z.string().min(1, { message: 'Password is required' })
 })
 
 export const registerSchema = loginSchema.extend({

@@ -1,14 +1,14 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'react-hot-toast'
 import { Button } from 'ui/button'
-import * as z from 'zod'
+import { z } from 'zod'
 
 import { loginSchema } from '~/lib/schemas/user'
 import { Field } from '~/ui/field'
@@ -51,7 +51,7 @@ export function LoginEmail({ csrfToken }: LoginProps) {
         router.push('/app/dashboard')
       }
     } catch (error) {
-      console.error('onLoginEmail ~ error', error)
+      toast.error((error as Error).message)
     } finally {
       toggleLoading(false)
     }

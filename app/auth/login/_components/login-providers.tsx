@@ -1,6 +1,7 @@
 'use client'
 
 import { signIn } from 'next-auth/react'
+import { toast } from 'react-hot-toast'
 
 import { IS_PREVIEW } from '~/lib/env'
 import { Button } from '~/ui/button'
@@ -10,7 +11,7 @@ export function LoginProviders() {
     try {
       await signIn(provider, { callbackUrl: `/app/dashboard`, redirect })
     } catch (error) {
-      console.error('onProviderLogin ~ error', error)
+      toast.error((error as Error).message)
     }
   }
 

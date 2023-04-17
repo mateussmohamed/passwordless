@@ -45,9 +45,7 @@ function productionProviders() {
           password: string
         }
 
-        const user = await prisma.user.findUnique({
-          where: { email }
-        })
+        const user = await prisma.user.findUnique({ where: { email } })
 
         if (!user) {
           throw new Error('No user Found with Email Please Sign Up...!')
