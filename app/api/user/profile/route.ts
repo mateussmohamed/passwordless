@@ -1,6 +1,6 @@
 import { prisma } from 'lib/prisma'
 import { NextResponse } from 'next/server'
-import * as z from 'zod'
+import { z } from 'zod'
 
 import { profileSchema } from '~/lib/schemas/user'
 

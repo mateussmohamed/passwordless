@@ -14,3 +14,8 @@ export function exclude<T, Key extends keyof T>(
   }
   return user
 }
+
+type FetchParams = Parameters<typeof fetch>
+
+const fetcher = (...args: FetchParams) =>
+  fetch(...args).then((res) => res.json())

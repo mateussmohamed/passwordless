@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { Button } from 'ui/button'
 import { Field } from 'ui/field'
-import * as z from 'zod'
+import { z } from 'zod'
 
 import { registerSchemaForm } from '~/lib/schemas/user'
 
@@ -58,7 +58,7 @@ export function RegisterForm({ csrfToken }: { csrfToken: string }) {
   }
 
   return (
-    <div>
+    <>
       <form onSubmit={handleSubmit(onRegisterForm)}>
         <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
         <div className="col-span-6 mb-4 sm:col-span-3">
@@ -129,6 +129,6 @@ export function RegisterForm({ csrfToken }: { csrfToken: string }) {
           </Link>
         </span>
       </div>
-    </div>
+    </>
   )
 }
