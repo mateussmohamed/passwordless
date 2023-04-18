@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { Logo } from 'ui/logo'
 import { UserAvatar } from 'ui/user-avatar'
 
-import { APP_URL } from '~/lib/env'
+import { env } from '~/lib/env'
 
 type AppLinkProps = {
   children: React.ReactNode
@@ -38,7 +38,7 @@ export function AppNav({ user }: AppNavProps) {
   const [isOpenMainMenu, setOpenMainMenu] = useState(false)
 
   const handleSignOut = () => {
-    signOut({ callbackUrl: APP_URL })
+    signOut({ callbackUrl: env.APP_URL })
   }
 
   return (

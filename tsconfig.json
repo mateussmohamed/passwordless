@@ -30,7 +30,6 @@
     ]
   },
   "include": [
-    "process.d.ts",
     "next-env.d.ts",
     "types/index.d.ts",
     "**/*.ts",

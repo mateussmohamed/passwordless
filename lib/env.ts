@@ -1,18 +1,49 @@
-export const IS_PRODUCTION =
-  process.env.VERCEL_ENV === 'production' ||
-  process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
-export const IS_PREVIEW =
-  process.env.VERCEL_ENV === 'preview' ||
-  process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-export const IS_DEVELOPMENT =
-  process.env.VERCEL_ENV === 'development' ||
-  process.env.NEXT_PUBLIC_VERCEL_ENV === 'development'
+import { z } from 'zod'
 
-export const APP_PREVIEW_EMAIL =
-  process.env.APP_PREVIEW_EMAIL || process.env.NEXT_PUBLIC_APP_PREVIEW_EMAIL
+const isServer = typeof window === 'undefined'
 
-export const IS_PREVIEW_OR_DEVELOPMENT = IS_PREVIEW || IS_DEVELOPMENT
+const serverEnvVariables = z.object({
+  GITHUB_CLIENT_SECRET: z.string(),
+  GITHUB_CLIENT_ID: z.string(),
+  NODE_ENV: z.enum(['development', 'test', 'production'])
+})
 
-const APP_URL = process.env.VERCEL_URL || process.env.NEXT_PUBLIC_VERCEL_URL
+const universalVariables = z.object({
+  APP_URL: z.string().url(),
+  APP_PREVIEW: z.boolean(),
+  APP_PREVIEW_EMAIL: z.string()
+})
 
-export { APP_URL }
+let env = {
+  APP_URL: process.env.VERCEL_URL || process.env.NEXT_PUBLIC_VERCEL_URL,
+  APP_PREVIEW: [
+    process.env.VERCEL_ENV,
+    process.env.NEXT_PUBLIC_VERCEL_ENV
+  ].includes('preview'),
+
+  APP_PREVIEW_EMAIL:
+    process.env.APP_PREVIEW_EMAIL || process.env.NEXT_PUBLIC_APP_PREVIEW_EMAIL,
+
+  GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
+  GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+
+  NODE_ENV: process.env.NODE_ENV
+}
+
+const merged = serverEnvVariables.merge(universalVariables)
+
+const parsed = isServer
+  ? merged.safeParse(env)
+  : universalVariables.safeParse(env)
+
+if (parsed.success === false) {
+  console.error(
+    '❌ Invalid environment variables:',
+    JSON.stringify(parsed.error.flatten().fieldErrors)
+  )
+  throw new Error('Invalid environment variables')
+} else {
+  env = parsed.data as Required<z.infer<typeof merged>>
+}
+
+export { env }

@@ -17,9 +17,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html className="min-h-screen">
+    <html>
       <body>
-        <main>{children}</main>
+        {children}
         <Toaster position="bottom-right" />
       </body>
     </html>

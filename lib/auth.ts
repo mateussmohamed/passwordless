@@ -6,7 +6,7 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import GithubProvider from 'next-auth/providers/github'
 
 import { validatePassword } from '~/app/api/user/register/password.service'
-import { APP_PREVIEW_EMAIL, IS_PREVIEW } from '~/lib/env'
+import { env } from '~/lib/env'
 
 import { exclude } from './utils'
 
@@ -19,7 +19,7 @@ function previewProviders() {
       },
       async authorize() {
         const user = await prisma.user.findFirst({
-          where: { email: APP_PREVIEW_EMAIL }
+          where: { email: env.APP_PREVIEW_EMAIL }
         })
         return user ?? null
       }
@@ -65,14 +65,14 @@ function productionProviders() {
       }
     }),
     GithubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET
+      clientId: env.GITHUB_CLIENT_ID,
+      clientSecret: env.GITHUB_CLIENT_SECRET
     })
   ]
 }
 
 function defineProviders() {
-  return IS_PREVIEW ? previewProviders() : productionProviders()
+  return env.APP_PREVIEW ? previewProviders() : productionProviders()
 }
 
 export const authOptions: NextAuthOptions = {
