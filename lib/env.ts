@@ -21,7 +21,7 @@ const client = z.object({
 })
 
 const processEnv = {
-  APP_URL: String(process.env.VERCEL_URL || process.env.NEXT_PUBLIC_VERCEL_URL),
+  APP_URL: process.env.VERCEL_URL || process.env.NEXT_PUBLIC_VERCEL_URL,
   APP_PREVIEW: IS_PREVIEW,
   APP_PREVIEW_EMAIL:
     process.env.APP_PREVIEW_EMAIL || process.env.NEXT_PUBLIC_APP_PREVIEW_EMAIL,
@@ -37,6 +37,8 @@ type Merged = z.infer<typeof merged>
 const parsed = isServer
   ? merged.safeParse(processEnv)
   : client.safeParse(processEnv)
+
+console.log(`🚀 ~ file: env.ts:41 ~ parsed:`, parsed)
 
 if (parsed.success === false) {
   console.error(
