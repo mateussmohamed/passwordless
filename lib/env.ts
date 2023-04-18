@@ -34,11 +34,13 @@ const merged = server.merge(client)
 
 type Merged = z.infer<typeof merged>
 
+console.log(`🚀 ~ file: env.ts:37 ~ processEnv:`, processEnv)
+
 const parsed = isServer
   ? merged.safeParse(processEnv)
   : client.safeParse(processEnv)
 
-console.log(`🚀 ~ file: env.ts:41 ~ parsed:`, parsed)
+console.log(`🚀 ~ file: env.ts:43 ~ parsed:`, JSON.stringify(parsed))
 
 if (parsed.success === false) {
   console.error(
