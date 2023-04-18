@@ -15,7 +15,7 @@ const server = z.object({
 })
 
 const client = z.object({
-  APP_URL: z.string().url().nonempty(),
+  APP_URL: z.string().nonempty(),
   APP_PREVIEW: z.boolean(),
   APP_PREVIEW_EMAIL: z.string().nonempty()
 })
@@ -34,13 +34,9 @@ const merged = server.merge(client)
 
 type Merged = z.infer<typeof merged>
 
-console.log(`🚀 ~ file: env.ts:37 ~ processEnv:`, processEnv)
-
 const parsed = isServer
   ? merged.safeParse(processEnv)
   : client.safeParse(processEnv)
-
-console.log(`🚀 ~ file: env.ts:43 ~ parsed:`, JSON.stringify(parsed))
 
 if (parsed.success === false) {
   console.error(
