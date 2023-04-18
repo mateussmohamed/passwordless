@@ -3,7 +3,7 @@
 import { signIn } from 'next-auth/react'
 import { toast } from 'react-hot-toast'
 
-import { IS_PREVIEW } from '~/lib/env'
+import { env } from '~/lib/env'
 import { Button } from '~/ui/button'
 
 export function LoginProviders() {
@@ -18,7 +18,7 @@ export function LoginProviders() {
   return (
     <div className="w-full py-4">
       <div className="grid grid-cols-1 gap-4">
-        {IS_PREVIEW ? (
+        {env.APP_PREVIEW ? (
           <Button
             className="ripple waves-light"
             size="full"

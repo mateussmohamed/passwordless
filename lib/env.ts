@@ -1,18 +1,57 @@
-export const IS_PRODUCTION =
-  process.env.VERCEL_ENV === 'production' ||
-  process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
-export const IS_PREVIEW =
-  process.env.VERCEL_ENV === 'preview' ||
-  process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-export const IS_DEVELOPMENT =
-  process.env.VERCEL_ENV === 'development' ||
-  process.env.NEXT_PUBLIC_VERCEL_ENV === 'development'
+// credits: https://create.t3.gg/en/usage/env-variables
+import { z } from 'zod'
 
-export const APP_PREVIEW_EMAIL =
-  process.env.APP_PREVIEW_EMAIL || process.env.NEXT_PUBLIC_APP_PREVIEW_EMAIL
+const isServer = typeof window === 'undefined'
 
-export const IS_PREVIEW_OR_DEVELOPMENT = IS_PREVIEW || IS_DEVELOPMENT
+const IS_PREVIEW = [
+  process.env.VERCEL_ENV,
+  process.env.NEXT_PUBLIC_VERCEL_ENV
+].includes('preview')
 
-const APP_URL = process.env.VERCEL_URL || process.env.NEXT_PUBLIC_VERCEL_URL
+const server = z.object({
+  GITHUB_CLIENT_SECRET: z.string().nonempty(),
+  GITHUB_CLIENT_ID: z.string().nonempty(),
+  NODE_ENV: z.enum(['development', 'test', 'production'])
+})
 
-export { APP_URL }
+const client = z.object({
+  APP_URL: z.string().nonempty(),
+  APP_PREVIEW: z.boolean(),
+  APP_PREVIEW_EMAIL: z.string().nonempty()
+})
+
+const processEnv = {
+  APP_URL: process.env.VERCEL_URL || process.env.NEXT_PUBLIC_VERCEL_URL,
+  APP_PREVIEW: IS_PREVIEW,
+  APP_PREVIEW_EMAIL:
+    process.env.APP_PREVIEW_EMAIL || process.env.NEXT_PUBLIC_APP_PREVIEW_EMAIL,
+  GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
+  GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+  NODE_ENV: process.env.NODE_ENV
+}
+
+const merged = server.merge(client)
+
+type Merged = z.infer<typeof merged>
+
+const parsed = isServer
+  ? merged.safeParse(processEnv)
+  : client.safeParse(processEnv)
+
+if (parsed.success === false) {
+  console.error(
+    '❌ Invalid environment variables:',
+    parsed.error.flatten().fieldErrors
+  )
+  throw new Error('Invalid environment variables')
+}
+
+const data = parsed.data as Merged
+
+const env = new Proxy(data, {
+  get(target, prop) {
+    return target[prop as keyof typeof data]
+  }
+})
+
+export { env }

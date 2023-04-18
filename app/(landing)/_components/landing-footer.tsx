@@ -30,7 +30,7 @@ function LandingFooterLink({
 
 export function LandingFooter() {
   return (
-    <footer className="fixed bottom-0 w-full bg-indigo-700 dark:bg-gray-800">
+    <footer className="w-full bg-indigo-700 dark:bg-gray-800">
       <div className="mx-auto max-w-screen-xl p-4">
         <div className="mx-auto flex max-w-xs items-center justify-center gap-4 py-4">
           <LandingFooterLink href="https://twitter.com/mateussmohamed">
